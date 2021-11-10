@@ -11,7 +11,7 @@ namespace ComputerStore.Domain.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<CPU> CPUs { get; set; }
-        // сюда добавим потом оперативку и тд и тп
+        // сюда добавим потом оперативку и тд и тп.
     }
 
 }
