@@ -1,0 +1,304 @@
+﻿@model ComputerStore.Domain.Entities.ShippingDetails
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@*<div class="ofz">
+        <h1> Оформить заказ  </h1>
+    </div>*@
+@*<div class="chek">
+
+    <style>
+        .ofz {
+            position: absolute;
+            top: 100px;
+            width: 50%;
+            margin-left: 39%;
+        }
+    </style>*@
+
+
+
+
+@*@using (Html.BeginForm())
+    {
+        <h3>Данные</h3>
+        <div class="form-group">
+            <label>Ваше имя:</label>
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>
+        <h3>Адрес доставки</h3>
+        foreach (var property in ViewData.ModelMetadata.Properties)
+        {
+            if (property.PropertyName != "Name")
+            {
+                <div class="form-group">
+                    <label>@(property.DisplayName ?? property.PropertyName)</label>
+                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                </div>
+            }
+        }
+
+
+
+        <div class="text-center">
+            <input class="btn btn-primary" type="submit" value="Обработать заказ" />
+        </div>
+    }*@
+@using (Html.BeginForm())
+{
+    @*@Html.ValidationSummary();*@ //////////тут
+    @*<h3>Данные</h3>
+        <div class="form-group">
+            <label>Ваше имя:</label>
+        </div>
+        <div class="txtbox1">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        </div>*@
+
+
+
+    <style>
+        .form-group {
+            width: 180px;
+            display: inline;
+        }
+
+
+        .form-group1 {
+            width: 70px;
+        }
+
+        .form-group2 {
+            flex-basis: 250px;
+            flex-grow: 1;
+        }
+
+        .txtbox1 {
+            width: 300px;
+        }
+
+
+        .parent {
+            display: flex;
+        }
+
+        .inner-left {
+            width: 150px;
+        }
+
+        .inner-right {
+            flex-basis: 250px;
+            flex-grow: 1;
+        }
+
+        .txtbox2 {
+            width: 65px;
+        }
+
+        .adress {
+        }
+
+        .form-group3 {
+            position: relative;
+            left: 13%;
+            bottom: 5%;
+            /* корпус*/
+        }
+
+        .form-group4 {
+            position: absolute;
+            left: 18%;
+        }
+
+        .chek {
+            width: 50%;
+            margin-left: 39%;
+        }
+    </style>
+    @*<h3>Адрес доставки</h3>
+        <div class="form-group">
+            <label>Страна:</label>
+        </div>
+        <div class="txtbox1">
+            @Html.TextBoxFor(x => x.Country, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Город:</label>
+        </div>
+        <div class="txtbox1">
+            @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Улица:</label>
+        </div>
+        <div class="txtbox1">
+            @Html.TextBoxFor(x => x.Street, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Дом:</label>
+        </div>
+        <div class="txtbox1">
+            @Html.TextBoxFor(x => x.House, new { @class = "form-control" })
+        </div>
+
+
+        <div class="adress">
+
+
+            <div class="form-group">
+                <label>Квартира</label>
+                <div class="txtbox2">
+                    @Html.TextBoxFor(x => x.Flat, new { @class = "form-control" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group3">
+                <label>Корпус</label>
+
+
+                <div class="txtbox2">
+                    @Html.TextBoxFor(x => x.HouseBuilding, new { @class = "form-control" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group4">
+                <label>Этаж</label>
+
+                <div class="txtbox2">
+                    @Html.TextBoxFor(x => x.Floor, new { @class = "form-control" })
+                </div>
+            </div>
+
+        </div>*@
+
+    ///////////////////////////////////////
+
+
+    <div class="chek">
+        <h3>Оформить заказ</h3>
+        @Html.ValidationSummary()
+        <h3>Данные</h3>
+        <div class="fname">
+
+            @*<input type="text" name="FirstName" placeholder="Имя" class="fname-text-field">*@
+            @Html.TextBoxFor(x => x.Name, new { @class = "fname-text-field", @placeholder = "Имя" })
+        </div>
+
+        <div class="lname">
+
+            @*<input type="text" name="lastName" placeholder="Фамилия" class="lname-text-field">*@
+            @Html.TextBoxFor(x => x.Surname, new { @class = "lname-text-field", @placeholder = "Фамилия" })
+        </div>
+
+        <h3>Адресс Доставки</h3>
+
+        <div class="Country">
+
+            @*<input type="text" class="Contry-text-field" placeholder="Страна" name="Country">*@
+            @Html.TextBoxFor(x => x.Country, new { @class = "Contry-text-field", @placeholder = "Страна" })
+        </div>
+
+        <div class="City">
+
+            @*<input type="text" name="City" placeholder="Город" class="city-text-field">*@
+            @Html.TextBoxFor(x => x.City, new { @class = "city-text-field", @placeholder = "Город" })
+        </div>
+
+        <div class="adress">
+            <div class="Ulica">
+                @*<input type="text" class="Ulica-text-field" placeholder="Улица" name="Ulica">*@
+                @Html.TextBoxFor(x => x.Street, new { @class = "Ulica-text-field", @placeholder = "Улица" })
+            </div>
+            <style>
+                .Contry-text-field {
+                    display: block;
+                    width: 230px;
+                    height: 30px;
+                    padding: 0.375rem 0.75rem;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: #212529;
+                    background-color: #fff;
+                    border: 1px solid #bdbdbd;
+                    border-radius: 0.25rem;
+                }
+            </style>
+        </div>
+        <div class="1podblock">
+
+
+            <div class="Kvartira">
+                @*<input type="text" class="Kvartira-text-field" placeholder="Квартира" name="Kvartira">*@
+                @Html.TextBoxFor(x => x.Flat, new { @class = "Kvartira-text-field", @placeholder = "Квартира" })
+
+            </div>
+
+            <div class="Dom">
+                @*<input type="text" class="Dom-text-field" placeholder="Дом" name="Dom">*@
+                @Html.TextBoxFor(x => x.House, new { @class = "Dom-text-field", @placeholder = "Дом" })
+
+            </div>
+            <style>
+                .Dom-text-field {
+                    display: block;
+                    width: 97px;
+                    height: 30px;
+                    padding: 0.375rem 0.75rem;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: #212529;
+                    background-color: #fff;
+                    border: 1px solid #bdbdbd;
+                    border-radius: 0.25rem;
+                    margin-left: 40px;
+                }
+
+                .Dom {
+                    display: inline-block;
+                    margin-left: 30px;
+                    margin-top: 15px;
+                }
+            </style>
+
+        </div>
+
+        <div class="2podblock">
+
+
+            <div class="Etazh">
+                @*<input type="text" class="etazh-text-field" placeholder="Этаж" name="etazh">*@
+                @Html.TextBoxFor(x => x.Floor, new { @class = "etazh-text-field", @placeholder = "Этаж" })
+
+            </div>
+            <div class="Korpus">
+                @*<input type="text" class="korpus-text-field" placeholder="Корпус" name="korpus">*@
+                @Html.TextBoxFor(x => x.HouseBuilding, new { @class = "korpus-text-field", @placeholder = "Корпус" })
+
+            </div>
+        </div>
+        <div class="pull-center">
+            @*<input class="btn btn-dark btn-block" type="submit" value="Обработать заказ" />*@
+            <input type="submit" class="btn btn-dark btn-block" value="Добавить в корзину" />
+        </div>
+    </div>
+    <style>
+        .btn
+        {
+            width:230px;
+            margin-top:4px;
+        }
+    </style>
+
+
+    @*<input class="btn btn-dark " type="submit" value="Обработать заказ" />*@
+
+
+
+}
+</div>

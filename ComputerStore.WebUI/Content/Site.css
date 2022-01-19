@@ -1,18 +1,374 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+header .logo {
+    color: #0f0d0d;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+    header ul li {
+        list-style: none;
+        margin-left: 20px;
+    }
+
+        header ul li a {
+            text-decoration: none;
+            padding: 6px 15px;
+            color: #0f0d0d;
+            border-radius: 20px;
+        }
+
+            header ul li a:hover {
+                background: white;
+                color: #0f0d0d;
+            }
+
+
+section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    justify-content: center;
 }
 
+
+
+h2 {
+    position: absolute;
+    color: white;
+    white-space: nowrap;
+    font-size: 7.5vw;
+    font-size: 1.5em;
+    z-index: 9;
+}
+
+
+
+
+ul li {
+    list-style: none;
+}
+
+
+
+
+
+#myList li {
+    list-style: none;
+    padding-left: 7px;
+    margin-bottom: 15px;
+    transition: all .2s ease-in-out;
+    transform: translate3d(0px, 30px, 0);
+    opacity: 0;
+}
+
+    #myList li.active {
+        transform: translate3d(0px, 0, 0);
+        opacity: 1;
+    }
+
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+:root {
+    --card-color: #1b4cc8;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+
+.container {
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.pricing1 {
+    background: #fff;
+}
+
+/*текст черного заголовка*/
+.pricingtitle {
+    font-size: 48px;
+    font-weight: 600;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 60px;
+    line-height: 1;
+}
+
+.pricing-card_videocarta {
+    width: 300px;
+}
+
+
+.pricing-card__top {
+    height: 250px;
+    width: 100%;
+}
+
+/*картинка */
+.picture {
+    position: absolute;
+    top: 18%;
+    rigth: 100px;
+    border: solid;
+    border-color: white;
+    border-radius: 10px;
+}
+
+ /*цена*/
+.pricing-card__price {
+    position: absolute;
+    top: 79%;
+    right: 8%;
+}
+
+
+.pricing-card {
+    border-radius: 15px;
+    background: #c4c5cc;
+    border: 1px solid transparent;
+    transition: all 0.6s ease;
+    transform: perspective(1000px);
+    align: center;
+    display: inline-block;
+}
+
+.pricing-card__top {
+    transition: all 0.6s ease;
+    border-radius: 15px;
+    background: var(--card-color);
+    position: relative;
+    padding: 20px 30px;
+    color: #fff;
+    transform: perspective(1000px);
+}
+
+.pricing-card__title {
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.pricing-card__price {
+    font-size: 24px;
+}
+
+    .pricing-card__price span {
+        font-weight: 300;
+        font-size: 14px;
+    }
+
+.pricing-card__body {
+    padding: 30px;
+ 
+}
+    /*Select*/
+    .pricing-card__button a {
+        display: inline-flex;
+        height: 40px;
+        width: 80%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: var(--card-color);
+        color: #fff;
+        font-weight: 700;
+        font-size: 18px;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.6s ease;
+        border: 1px solid transparent;
+        transform: perspective(1000px);
+    }
+
+.pricing-card_videocarta {
+    --card-color: #000000;
+}
+
+.pricing-card_mp {
+    --card-color: #000000;
+}
+
+.pricing-card_processor {
+    --card-color: #000000;
+}
+
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+/////
+.Contry-text-field {
+    display: block;
+    width: 230px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+}
+
+.fname-text-field {
+    display: block;
+    width: 230px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+}
+
+.lname-text-field {
+    display: block;
+    width: 230px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+}
+
+.city-text-field {
+    display: block;
+    width: 230px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+}
+
+.Ulica-text-field {
+    display: block;
+    width: 230px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+}
+
+.Kvartira-text-field {
+    display: block;
+    width: 100px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+}
+
+.etazh-text-field {
+    display: block;
+    width: 100px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+    margin-top: 3px;
+}
+
+.adress {
+    display: inline-block;
+    height: 20px;
+    width: 500px;
+}
+
+.Ulica {
+}
+
+.Kvartira {
+    display: inline-block;
+    width: 60px;
+    margin-top:8px;
+}
+
+.Etazh {
+    display: inline-block;
+    width: 60px;
+    
+}
+
+.Country {
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
+.FirstName {
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.lname {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.City {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.korpus-text-field {
+    display: block;
+    width: 97px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.25rem;
+}
+
+.Korpus {
+    display: inline-block;
+    margin-left:70px;
+    
+}

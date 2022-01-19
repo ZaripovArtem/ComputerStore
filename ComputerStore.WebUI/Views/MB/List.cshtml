@@ -1,27 +1,26 @@
-﻿@using ComputerStore.Domain.Entities
+﻿@using ComputerStore.WebUI.HtmlHelpers
 @using ComputerStore.WebUI.Models
-@using ComputerStore.WebUI.HtmlHelpers
-@model CPUsListViewModel
-
+@model MBsListViewModel
 
 @{
-    ViewBag.Title = "Процессоры";
+    ViewBag.Title = "Материнские платы";
 }
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<style>
-    .testt
-    {
-        position: absolute;
-        width: -300px;
-    }
-</style>
+@*@foreach (var p in @Model.MBs)
+     {
+    <div>
+        <h3> @p.Name</h3>
+        <p>@p.Description</p>
+        <h4>@p.Price.ToString("# руб")</h4>
+    </div>
+     }*@
 
 <div class="row mt-5 mb-2">
 
-    @foreach (var p in @Model.CPUs)
+    @foreach (var p in @Model.MBs)
     {
         <div class="col-lg-4">
 
@@ -85,7 +84,6 @@
 
 
 
-
                                         <div class="pricing-card__plus-text"></div>
                                     </div>
 
@@ -96,58 +94,29 @@
                                     <div class="pricing-card__plus">
 
                                     </div>
-
                                 </div>
-
-
-
-                                @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
-
-                                <!--<div class="container">
-
-                                    <div class="dropdown">-->
-                                        @*<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                            
-                                            <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="15" width="15">
-                                            тут текст для описания
-                                            <span class="caret"></span>
-                                        </button>*@
-                                        @*<ul class="dropdown-menu">
-                                            <li><a>@p.Name</a></li> 
-                                            <li><a>@p.Streams</a></li>
-                                        </ul>*@
-                                    <!--</div>
-                                </div>-->
-
-
-
-                                @Html.Partial("CPUSummary", p)
-                                @using (Html.BeginForm("AddToCart", "Cart"))
+                                @Html.Partial("MBSummary", p)
+                                @using (Html.BeginForm("AddToCartMB", "Cart"))
                                 {
                                     @*<div class="pull-right">
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                <input type="submit" class="btn btn-success" value="Добавить в корзину" />
-            </div>*@
+                                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                            <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+                                        </div>*@
                                 }
                                 @*<div class="pricing-card__button"><a href="">Select</a></div>*@
 
                             </div>
                         </div>
-                  
-
-                       
 
 
                     </div>
                 </div>
             </div>
-            
-
         </div>
 
     }
 </div>
 
-@*<div>
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
-    </div>*@
+<div>
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+</div>

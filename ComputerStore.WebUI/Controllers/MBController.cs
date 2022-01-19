@@ -9,32 +9,32 @@ using ComputerStore.WebUI.Models;
 
 namespace ComputerStore.WebUI.Controllers
 {
-    public class CPUController : Controller
+    public class MBController : Controller
     {
-        private ICPURepository repository;
+        private IMBRepository MBRepository;
         public int pageSize = 4;
-        public CPUController(ICPURepository rep)
+        public MBController (IMBRepository repo)
         {
-            repository = rep;
+            MBRepository = repo;
         }
-
 
         public ViewResult List(int page = 1)
         {
-            CPUsListViewModel model = new CPUsListViewModel
+            MBsListViewModel model = new MBsListViewModel
             {
-                CPUs = repository.CPUs
-                    .OrderBy(c => c.CPUId)
+                MBs = MBRepository.MBs
+                    .OrderBy(mb => mb.MBId)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize),
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = repository.CPUs.Count()
+                    TotalItems = MBRepository.MBs.Count()
                 }
             };
             return View(model);
         }
     }
+    
 }

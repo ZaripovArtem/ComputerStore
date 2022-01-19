@@ -6,7 +6,7 @@ namespace ComputerStore.Domain.Concrete
 {
        public class EFCPURepository : ICPURepository
     {
-        EFDbContext context = new EFDbContext();
+        EFCPUContext context = new EFCPUContext();
 
         public IEnumerable<CPU> CPUs
         {

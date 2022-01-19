@@ -1,0 +1,13 @@
+﻿@model ComputerStore.Domain.Entities.MB
+
+@*<div class="well">*@
+
+    @using (Html.BeginForm("AddToCartMB", "Cart"))
+    {
+        
+            @Html.HiddenFor(x => x.MBId)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+        
+    }
+@*</div>*@

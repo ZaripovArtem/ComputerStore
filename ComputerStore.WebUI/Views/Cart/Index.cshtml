@@ -1,0 +1,83 @@
+﻿@model ComputerStore.WebUI.Models.CartIndexViewModel
+@using ComputerStore.Domain.Entities
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<style>
+    #cartTable td {
+        vertical-align: middle;
+    }
+</style>
+
+<h2>Ваша корзина</h2>
+<br />
+
+<table id="cartTable" class="table">
+    <thead>
+        <tr>
+            <th>Кол-во</th>
+            <th>Наименование</th>
+            <th class="text-right">Цена</th>
+            <th class="text-right">Общая цена</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+
+            <tr>
+                <td class="text-left">@line.Quantity</td>
+                <td class="text-left">@line.Nname</td>
+                <td class="text-right">@line.Pprice.ToString("# ₽")</td>
+                <td class="text-right">
+                    @((line.Quantity * line.Pprice).ToString("# ₽"))
+                </td>
+
+               
+            </tr>
+
+
+        }
+
+
+
+
+
+
+
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Итого:</td>
+            <td class="text-right">
+                @Model.Cart.ComputeTotalValue().ToString()
+                ₽
+            </td>
+            <td>
+                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                {
+                    @*@Html.Hidden("CPUId", line.CPU.CPUId)     с этим работает только CPU *@
+                    @*@Html.Hidden("CPUId", line.IDCard)*@
+
+                    @Html.HiddenFor(x => x.ReturnUrl)
+                    <input class="btn btn-sm btn-warning text-right" type="submit" value="Очистить корзину" />
+                }
+            </td>
+        </tr>
+
+
+
+    </tfoot>
+    
+</table>
+
+
+
+<div class="text-center">
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
+    @Html.ActionLink("Оформить заказ", "Checkout", null, new { @class = "btn btn-primary" })
+</div>

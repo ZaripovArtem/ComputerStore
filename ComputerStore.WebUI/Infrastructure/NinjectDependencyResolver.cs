@@ -44,9 +44,41 @@ namespace ComputerStore.WebUI.Infrastructure
             //    new CPU { Name = "AMD FX-4300 OEM", Price=3550 },
             //    new CPU { Name = "Intel Celeron G5925 OEM", Price=3699 }
             //});
-            //        kernel.Bind<ICPURepository>().ToConstant(mock.Object);
+            //kernel.Bind<ICPURepository>().ToConstant(mock.Object);
 
-            kernel.Bind<ICPURepository>().To<EFCPURepository>();
+
+
+
+             kernel.Bind<ICPURepository>().To<EFCPURepository>(); // Для базы данных
+
+
+
+
+            /////////////////Материнские платы/////////////////////
+
+            //Mock<IMBRepository> mock = new Mock<IMBRepository>();
+            //mock.Setup(m => m.MBs).Returns(new List<MB>
+            //    {
+            //        new MB { Name = "test1", Price = 5000},
+            //        new MB { Name = "test2", Price = 2000 }
+
+            //    });
+            //kernel.Bind<IMBRepository>().ToConstant(mock.Object);
+
+
+
+
+            kernel.Bind<IMBRepository>().To<EFMBRepository>(); //  Для базы данных
+
+
+
+
+            ////////////////////////////////////////////
+
+
+           
+
+
         }
     }
 }
