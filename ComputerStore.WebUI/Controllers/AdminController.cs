@@ -37,7 +37,7 @@ namespace ComputerStore.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 CPURepository.SaveChanges(cpu);
-                TempData["message"] = string.Format("Изменения в игре \"{0}\" были сохранены", cpu.Name);
+                TempData["message"] = string.Format("Изменения в процессоре \"{0}\" были сохранены", cpu.Name);
                 return RedirectToAction("CPU");
             }
             else
@@ -45,6 +45,18 @@ namespace ComputerStore.WebUI.Controllers
                 // Что-то не так со значениями данных
                 return View(cpu);
             }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteProduct(int CPUId)
+        {
+            CPU deletedProduct = CPURepository.DeleteProduct(CPUId);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = string.Format("Процессор \"{0}\" был удален",
+                    deletedProduct.Name);
+            }
+            return RedirectToAction("CPU");
         }
     }
 }

@@ -32,5 +32,15 @@ namespace ComputerStore.Domain.Concrete
             }
             context.SaveChanges();
         }
+        public CPU DeleteProduct(int CPUId)
+        {
+            CPU dbEntry = context.CPUs.Find(CPUId);
+            if (dbEntry != null)
+            {
+                context.CPUs.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }
