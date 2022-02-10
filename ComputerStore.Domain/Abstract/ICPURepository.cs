@@ -10,5 +10,6 @@ namespace ComputerStore.Domain.Abstract
    public interface ICPURepository
     {
         IEnumerable<CPU> CPUs { get; }
+        void SaveChanges(CPU cpu);
     }
 }

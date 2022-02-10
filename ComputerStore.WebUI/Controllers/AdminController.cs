@@ -30,5 +30,21 @@ namespace ComputerStore.WebUI.Controllers
                 .FirstOrDefault(c => c.CPUId == cpuid);
             return View(cpu);
         }
+        
+        [HttpPost]
+        public ActionResult EditCPU(CPU cpu)
+        {
+            if (ModelState.IsValid)
+            {
+                CPURepository.SaveChanges(cpu);
+                TempData["message"] = string.Format("Изменения в игре \"{0}\" были сохранены", cpu.Name);
+                return RedirectToAction("CPU");
+            }
+            else
+            {
+                // Что-то не так со значениями данных
+                return View(cpu);
+            }
+        }
     }
 }

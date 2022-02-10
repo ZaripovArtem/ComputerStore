@@ -9,6 +9,10 @@
 @using (Html.BeginForm())
 {
     @Html.EditorForModel()
-    @Html.Display("Name")
+    <input type = "submit" value = "Сохранить" class="btn btn-primary" />
+    @Html.ActionLink("Отменить изменения и вернуться к списку", "Index", null, new
+    {
+        @class = "btn btn-default"
+    })
 }
 
