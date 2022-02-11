@@ -58,5 +58,10 @@ namespace ComputerStore.WebUI.Controllers
             }
             return RedirectToAction("CPU");
         }
+
+        public ViewResult CreateCPU()
+        {
+            return View("EditCPU", new CPU());
+        }
     }
 }
