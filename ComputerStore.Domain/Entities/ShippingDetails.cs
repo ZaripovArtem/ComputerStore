@@ -16,6 +16,7 @@ namespace ComputerStore.Domain.Entities
         [Required(ErrorMessage = "Укажите Вашу фамилию")]
         [Display(Name = "Имя")]
         public string Surname { get; set; }
+        // Добавить номер телефона
 
         [Required(ErrorMessage = "Укажите страну")]
         [Display(Name = "Страна")]

@@ -28,8 +28,9 @@ namespace ComputerStore.Domain.Entities
         [Required(ErrorMessage = "Введите кол-во потоков процессора")]
         public int Streams { get; set; } // Потоки
         [Display(Name = "Частота")]
-        [Required(ErrorMessage = "Введите частоту процессора")]
-        public double Frequency { get; set; } // частота
+        [Required]
+        [Range(0.1, double.MaxValue, ErrorMessage = "Введите положительное значение для частоты")]
+        public decimal Frequency { get; set; } // частота
         [Display(Name = "Цена")]
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Введите положительное значение для цены")]

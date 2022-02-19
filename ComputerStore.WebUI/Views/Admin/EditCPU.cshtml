@@ -4,15 +4,42 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Редактирование процессора @Model.Name</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.EditorForModel()
-    <input type = "submit" value = "Сохранить" class="btn btn-primary" />
-    @Html.ActionLink("Отменить изменения и вернуться к списку", "Index", null, new
+<div class="panel">
+    <div class="panel-heading">
+        <h2>Редактирование процессора @Model.Name</h2>
+    </div>
+    @using (Html.BeginForm())
     {
-        @class = "btn btn-default"
-    })
-}
+<div class="panel-body">
+    @*@Html.EditorForModel()*@
+        @Html.TextBoxFor(x => x.Brand, new { @class = "fname-text-field", @placeholder = "Производитель" })
+        <br />
+        @Html.TextBoxFor(x => x.Name, new { @class = "fname-text-field", @placeholder = "Название" })
+        <br />
+        @Html.TextBoxFor(x => x.Description, new { @class = "fname-text-field", @placeholder = "Описание" })
+        <br />
+        @Html.TextAreaFor(x => x.Description, 10, 100, null)
+        <br />
+        @Html.TextBoxFor(x => x.Cores, new { @class = "fname-text-field", @placeholder = "Ядра" })
+        <br />
+        @Html.TextBoxFor(x => x.Streams, new { @class = "fname-text-field", @placeholder = "Потоки" })
+        <br />
+        @Html.TextBoxFor(x => x.Frequency, new { @class = "fname-text-field", @placeholder = "Частота" })
+        <br />
+        @Html.TextBoxFor(x => x.Price, new { @class = "fname-text-field", @placeholder = "Цена" })
+</div>
+        
+        <div class="panel-footer">
+            <input type="submit" value="Сохранить" class="btn btn-outline-dark" />
+            @Html.ActionLink("Отменить изменения", "CPU", null, new
+            {
+                @class = "btn btn-outline-danger"
+            })
+        </div>
+
+    }
+</div>
+
+
+
 
