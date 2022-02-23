@@ -113,6 +113,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAuthProvider.cs" />
     <Compile Include="Abstract\ICPURepository.cs" />
     <Compile Include="Abstract\IMBRepository.cs" />
     <Compile Include="Abstract\IOrderProcessor.cs" />

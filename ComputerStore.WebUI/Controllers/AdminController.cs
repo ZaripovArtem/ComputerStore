@@ -8,6 +8,7 @@ using ComputerStore.Domain.Entities;
 
 namespace ComputerStore.WebUI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         ICPURepository CPURepository; // CPU

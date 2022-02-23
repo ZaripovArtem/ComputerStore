@@ -7,6 +7,7 @@ using Ninject;
 using ComputerStore.Domain.Abstract;
 using ComputerStore.Domain.Entities;
 using ComputerStore.Domain.Concrete;
+using ComputerStore.WebUI.Infrastructure.Concrete;
 
 namespace ComputerStore.WebUI.Infrastructure
 {
@@ -75,7 +76,7 @@ namespace ComputerStore.WebUI.Infrastructure
 
             ////////////////////////////////////////////
 
-
+            kernel.Bind<IAuthProvider>().To<FormAuthProvider>(); // Для авторизации
            
 
 
