@@ -56,8 +56,10 @@ namespace ComputerStore.Domain.Concrete
                   .AppendLine("Этаж: " + shippingDetails.Floor ?? "не указано");
 
 
-                bodyBuilder.TextBody = body.ToString(); 
-                message.Body = bodyBuilder.ToMessageBody(); // тело сообщения
+                bodyBuilder.TextBody = body.ToString();
+                //message.Body = bodyBuilder.ToMessageBody(); // тело сообщения
+                message.Body = new BodyBuilder() { HtmlBody = "<div style=\"color: green;\">Сообщение от MailKit</div>" + shippingDetails.Name + "<div style=\"color: green;\">Сообщение от MailKit</div>" }.ToMessageBody(); //тело сообщения (так же в формате HTML)
+                
 
                 using (MailKit.Net.Smtp.SmtpClient client = new MailKit.Net.Smtp.SmtpClient())
                 {
