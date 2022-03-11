@@ -24,41 +24,74 @@ namespace ComputerStore.Domain.Concrete
                 message.Subject = "Новый заказ"; //тема сообщения
 
                 var bodyBuilder = new BodyBuilder();
-               //  bodyBuilder.TextBody = test;
+                //  bodyBuilder.TextBody = test;
 
 
 
-                StringBuilder body = new StringBuilder()
-                 .AppendLine("Новый заказ обработан.")
-                 .AppendLine("---")
-                 .AppendLine("Товары:");
+                StringBuilder body = new StringBuilder();
+                 //.AppendLine("Новый заказ обработан.")
+                 //.AppendLine("---")
+                 //.AppendLine("Товары:");
 
 
                 foreach (var line in cart.Lines)
                 {
                     var subtotal = line.Pprice * line.Quantity;
-                    body.AppendFormat("{0} x {1} (итого: {2:c}",
+                    body.AppendFormat("{0} x {1} (итого: {2:c}\n",
                        line.Quantity, line.Nname, subtotal);
-                    body.AppendLine(")");
+                    body.AppendLine("), ");
                 }
-                body.AppendFormat("Общая стоимость: {0:c}", cart.ComputeTotalValue())
-                  .AppendLine("")
-                  .AppendLine("---")
-                  .AppendLine("Доставка:")
-                  .AppendLine("Имя: " + shippingDetails.Name)
-                  .AppendLine("Фамилия: " + shippingDetails.Surname)
-                  .AppendLine("Страна: " + shippingDetails.Country)
-                  .AppendLine("Город: " + shippingDetails.City)
-                  .AppendLine("Улица: " + shippingDetails.Street)
-                  .AppendLine("Дом: " + shippingDetails.House)
-                  .AppendLine("Квартира: " + shippingDetails.Flat ?? "не указано")
-                  .AppendLine("Корпус: " + shippingDetails.HouseBuilding ?? "не указано")
-                  .AppendLine("Этаж: " + shippingDetails.Floor ?? "не указано");
+                body.AppendFormat("Общая стоимость: {0:c}", cart.ComputeTotalValue());
+                // body.AppendLine("Общая стоимость: " + cart.ComputeTotalValue());
+                // body.AppendFormat("Общая стоимость: {0:c}", cart.ComputeTotalValue());
+                //.AppendLine("")
+                //.AppendLine("---")
+                //.AppendLine("Доставка:")
+                //.AppendLine("Имя: " + shippingDetails.Name)
+                //.AppendLine("Фамилия: " + shippingDetails.Surname)
+                //.AppendLine("Страна: " + shippingDetails.Country)
+                //.AppendLine("Город: " + shippingDetails.City)
+                //.AppendLine("Улица: " + shippingDetails.Street)
+                //.AppendLine("Дом: " + shippingDetails.House)
+                //.AppendLine("Квартира: " + shippingDetails.Flat ?? "не указано")
+                //.AppendLine("Корпус: " + shippingDetails.HouseBuilding ?? "не указано")
+                //.AppendLine("Этаж: " + shippingDetails.Floor ?? "не указано");
 
+                string Name = "Имя: " + shippingDetails.Name;
+                string Surname = "Фамилия: " + shippingDetails.Surname;
+                string Country = "Страна: " + shippingDetails.Country;
+                string City = "Город: " + shippingDetails.City;
+                string Street = "Улица: " + shippingDetails.Street;
+                string House = "Дом: " + shippingDetails.House;
+                string Flat = "Квартира: " + shippingDetails.Flat;
+                string HouseBuilding = "Корпус: " + shippingDetails.HouseBuilding;
+                string Floor = "Этаж: " + shippingDetails.Floor;
 
                 bodyBuilder.TextBody = body.ToString();
                 //message.Body = bodyBuilder.ToMessageBody(); // тело сообщения
-                message.Body = new BodyBuilder() { HtmlBody = "<div style=\"color: green;\">Сообщение от MailKit</div>" + shippingDetails.Name + "<div style=\"color: green;\">Сообщение от MailKit</div>" }.ToMessageBody(); //тело сообщения (так же в формате HTML)
+                message.Body = new BodyBuilder() { HtmlBody =
+                   //"<div style=\"color: green;\">Сообщение от MailKit</div>" + shippingDetails.Name + "<div style=\"color: green;\">Сообщение от MailKit</div>"
+                   "<img src = https://imgur.com/zbfOXgD.jpg>" +
+                   "<div style=\"border: 2px; border: solid; border-color: gray; border-radius: 5px; width: 596px;\"> Новый заказ обработан: <br> <br>" +
+                   body  
+                   + "<br>" + Name
+                   + "<br>" + Surname
+                   + "<br>" + Country
+                   + "<br>" + City
+                   + "<br>" + Street
+                   + "<br>" + House
+                   + "<br>" + Flat
+                   + "<br>" + HouseBuilding
+                   + "<br>" + Floor
+                   + "</div>" +
+                   "<br><div style=\"color: #adadad;\">Copyright © 2022 Computer Store std. <br>Все права защищены<br>Большая красная, 55.</div>" 
+
+
+
+
+
+
+                }.ToMessageBody(); //тело сообщения (так же в формате HTML)
                 
 
                 using (MailKit.Net.Smtp.SmtpClient client = new MailKit.Net.Smtp.SmtpClient())

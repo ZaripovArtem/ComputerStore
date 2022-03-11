@@ -17,13 +17,12 @@ namespace ComputerStore.WebUI.Controllers
     public class CartController : Controller
     {
 
-
+       
 
         private readonly Service service;
 
         private IOrderProcessor orderProcessor;///
 
-        
         private ICPURepository repository;
         private IMBRepository MBRepository;
 
@@ -156,18 +155,23 @@ namespace ComputerStore.WebUI.Controllers
             if (cart.Lines.Count() == 0)
             {
                 ModelState.AddModelError("", "Извините, ваша корзина пуста!");
+                return View("Checkout");
             }
 
             if (ModelState.IsValid)
             {
                 service.SendEmailCustom(cart, shippingDetails);
                 cart.Clear();
+                cart.RemoveLine();
+                //cart.Clear();
+
                 return View("Completed");
             }
             else
             {
                 return View(shippingDetails);
             }
+
         }
 
 

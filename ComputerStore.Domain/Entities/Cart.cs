@@ -53,7 +53,7 @@ namespace ComputerStore.Domain.Entities
             }
             Update();
         }
-        public void RemoveLine() // CPU cpu
+        public void RemoveLine() // используется для сброса корзины
         {
            
             lineCollectionMB.Clear();
