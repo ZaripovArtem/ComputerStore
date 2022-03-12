@@ -72,8 +72,8 @@ namespace ComputerStore.Domain.Concrete
                 message.Body = new BodyBuilder() { HtmlBody =
                    //"<div style=\"color: green;\">Сообщение от MailKit</div>" + shippingDetails.Name + "<div style=\"color: green;\">Сообщение от MailKit</div>"
                    "<img src = https://imgur.com/zbfOXgD.jpg>" +
-                   "<div style=\"border: 2px; border: solid; border-color: gray; border-radius: 5px; width: 596px;\"> Новый заказ обработан: <br> <br>" +
-                   body  
+                   "<div style=\"border: 2px; border: solid; border-color: gray; border-radius: 5px; width: 596px;\"> <div style =\"font-weight: bold; font-size: 20px; text-align: center;\">Новый заказ обработан</div><br>" +
+                   body  + "<hr>"
                    + "<br>" + Name
                    + "<br>" + Surname
                    + "<br>" + Country

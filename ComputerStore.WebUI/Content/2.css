@@ -477,8 +477,8 @@ body {
 }
 
 .swiper {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
 }
 
 .swiper-slide {
@@ -502,10 +502,14 @@ body {
 
     .swiper-slide img {
         display: block;
-        width: 100%;
-        height: 100%;
+        width: auto;
+        height: auto;
         object-fit: cover;
     }
+
+.maincontent {
+    justify-content: center;
+}
 
 
 .product-wrap1 {

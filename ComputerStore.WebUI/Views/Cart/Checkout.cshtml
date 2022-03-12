@@ -284,7 +284,7 @@
         </div>
         <div class="pull-center">
             @*<input class="btn btn-dark btn-block" type="submit" value="Обработать заказ" />*@
-            <input type="submit" class="btn btn-dark btn-block" value="Обработать заказ" />
+            <input type="submit" class="button_order" value="Обработать заказ" />
         </div>
     </div>
     <style>
@@ -292,6 +292,23 @@
         {
             width:230px;
             margin-top:4px;
+        }
+        .button_order:hover {
+            background-color: white;
+            color: black;
+            transition: 0.8s;
+            
+        }
+        .button_order:not(:hover) {
+            transition: 0.8s;
+        }
+        .button_order {
+            background-color: black;
+            color: white;
+            width: 230px;
+            height: 40px;
+            border-radius: 5px;
+            margin-top: 5px;
         }
     </style>
 

@@ -11,15 +11,12 @@
     @using (Html.BeginForm())
     {
 <div class="panel-body">
-    @*@Html.EditorForModel()*@
+        @*@Html.EditorForModel()*@
         @Html.TextBoxFor(x => x.Brand, new { @class = "fname-text-field", @placeholder = "Производитель" })
         <br />
         @Html.TextBoxFor(x => x.Name, new { @class = "fname-text-field", @placeholder = "Название" })
         <br />
-        @Html.TextBoxFor(x => x.Description, new { @class = "fname-text-field", @placeholder = "Описание" })
-        <br />
-        @Html.TextAreaFor(x => x.Description, 10, 100, null)
-        <br />
+
         @Html.TextBoxFor(x => x.Cores, new { @class = "fname-text-field", @placeholder = "Ядра" })
         <br />
         @Html.TextBoxFor(x => x.Streams, new { @class = "fname-text-field", @placeholder = "Потоки" })
@@ -27,6 +24,10 @@
         @Html.TextBoxFor(x => x.Frequency, new { @class = "fname-text-field", @placeholder = "Частота" })
         <br />
         @Html.TextBoxFor(x => x.Price, new { @class = "fname-text-field", @placeholder = "Цена" })
+        <br />
+        <div class="fname-text-field">
+            @Html.TextAreaFor(x => x.Description, 10, 60, null)
+        </div>
 </div>
         
         <div class="panel-footer">
@@ -39,6 +40,14 @@
 
     }
 </div>
+<style>
+    .fname-text-field {
+        margin: 5px;
+    }
+    .panel-footer{
+        margin: 5px;
+    }
+</style>
 
 
 

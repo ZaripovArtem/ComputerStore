@@ -8,21 +8,63 @@
 <div class="panel">
     <div class="panel-heading">
         <h3>Вход в систему</h3>
+
     </div>
+    @Html.ValidationSummary()
     <div class="panel-body">
-        <p class="lead">Пожалуйста, войдите в систему, чтобы получить доступ к админ. панели:</p>
+        <div class="attention">
+            <p>Войдите в систему, чтобы получить доступ к админ панели</p>
+
+        </div>
+
         @using (Html.BeginForm())
         {
-            @Html.ValidationSummary()
             <div class="form-group">
-                <label>Имя пользователя:</label>
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Имя пользователя" })
             </div>
             <div class="form-group">
-                <label>Пароль:</label>
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Пароль" })
             </div>
-            <input type="submit" value="Войти" class="btn btn-primary" />
+
+            <input type="submit" value="Войти" class="button-in" />
         }
     </div>
 </div>
+
+<style>
+    .form-control{
+        width: 400px;
+        padding: 10px;
+        margin-left: 10px;
+        margin-top: 5px;
+    }
+    .button-in{
+        color: white;
+        width: 70px;
+        background-color: black;
+        border-radius: 3px;
+        margin-left: 340px;
+        margin-top: 5px;
+    }
+    .button-in:hover{
+        background-color: white;
+        color: black;
+        transition: 0.8s;
+    }
+    .button-in:not(:hover){
+        transition: 0.8s;
+    }
+    .attention {
+        height: 70px;
+        width: 400px;
+        background-color: #dbe1e2;
+        border: 1px black solid;
+        margin-left: 10px;
+        padding-left: 3px;
+        border-radius: 5px;
+        opacity: 0.7;
+    }
+    .panel-heading{
+        margin-left: 110px;
+    }
+</style>

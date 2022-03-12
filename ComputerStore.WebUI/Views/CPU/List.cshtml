@@ -47,91 +47,122 @@
                                 <div class="pricing-card__price">
                                     <h4> @p.Price.ToString("# ₽")<span></span></h4>
                                 </div>
-                                    <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
-                                    @*<img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">*@
-                                </div>
+                                <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
+                                @*<img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">*@
+                            </div>
 
 
-                                <div class="pricing-card__body">
+                            <div class="pricing-card__body">
 
 
-                                    <div class="pricing-card__pluses">
+                                <div class="pricing-card__pluses">
 
 
-                                        <div class="pricing-card__plus">
+                                    <div class="pricing-card__plus">
 
 
-                                            <div class="pricing-card__plus-icon"><h4></h4></div>
-                                            <div class="pricing-card__plus-text"></div>
-                                        </div>
-
-
-
-
-
-                                        <div class="pricing-card__plus">
-
-                                            <div class="pricing-card__plus-icon">
-                                                @*<img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">*@
-
-                                                @p.Description
-
-                                            </div>
-
-
-
-
-
-                                            <div class="pricing-card__plus-text"></div>
-                                        </div>
-
-                                        <div class="pricing-card__plus">
-                                            <div class="pricing-card__plus-icon"><h4></h4></div>
-                                            <div class="pricing-card__plus-text"></div>
-                                        </div>
-                                        <div class="pricing-card__plus">
-
-                                        </div>
-
+                                        <div class="pricing-card__plus-icon"><h4></h4></div>
+                                        <div class="pricing-card__plus-text"></div>
                                     </div>
 
 
 
-                                    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
 
-                                    <!--<div class="container">
 
-            <div class="dropdown">-->
-                                    @*<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <div class="pricing-card__plus">
 
-                <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="15" width="15">
-                тут текст для описания
-                <span class="caret"></span>
-            </button>*@
-                                    @*<ul class="dropdown-menu">
-                <li><a>@p.Name</a></li>
-                <li><a>@p.Streams</a></li>
-            </ul>*@
-                                    <!--</div>
-        </div>-->
+                                        <div class="pricing-card__plus-icon">
+                                            @*<img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">*@
+
+                                            @p.Description
+
+                                        </div>
 
 
 
-                                    @Html.Partial("CPUSummary", p)
-                                    @using (Html.BeginForm("AddToCart", "Cart"))
-                                    {
-                                        @*<div class="pull-right">
-                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                    <input type="submit" class="btn btn-success" value="Добавить в корзину" />
-                </div>*@
-                                    }
-                                    @*<div class="pricing-card__button"><a href="">Select</a></div>*@
+
+
+                                        <div class="pricing-card__plus-text"></div>
+                                    </div>
+
+                                    <div class="pricing-card__plus">
+                                        <div class="pricing-card__plus-icon"><h4></h4></div>
+                                        <div class="pricing-card__plus-text"></div>
+                                    </div>
+                                    <div class="pricing-card__plus">
+
+                                    </div>
 
                                 </div>
-                            </div>
-                  
 
-                       
+
+
+                                @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+
+                                @*<div class="container">
+
+            <div class="dropdown">
+               <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+
+                  Характеристики
+                    <span class="caret"></span>
+                </button>
+                                    <ul class="dropdown-menu">
+                <li><a>@p.Name</a></li>
+                <li><a>@p.Streams</a></li>
+            </ul>
+             </div>
+        </div>*@
+                            <div class="characteristic">
+                                Характеристики
+                                <br />
+                                Ядра: @p.Cores
+                                <br />  
+                                Частота: @p.Frequency
+                                <br />
+                                Потоки: @p.Streams
+                                <br />
+                            </div>
+                                <style>
+
+                                    .characteristic {
+                                        border-radius: 5px;
+                                        border: 1px black solid;
+                                        font-weight: bold;
+                                        font-size: 13px;
+                                        padding: 5px;
+                                    }
+                                    
+                                </style>
+                                <br />
+                                @Html.Partial("CPUSummary", p)
+                                @using (Html.BeginForm("AddToCart", "Cart"))
+                                {
+                                    @*<div class="pull-right">
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+            </div>*@
+                                }
+                                @*<div class="pricing-card__button"><a href="">Select</a></div>*@
+
+
+
+
+                                @*<ul class="list-group">
+            <li class="list-group-item">@p.Cores</li>
+            <li class="list-group-item">@p.Frequency</li>
+        </ul>*@
+
+
+
+
+
+
+                            </div>
+                            </div>
+
+                      
+
 
 
                     </div>
