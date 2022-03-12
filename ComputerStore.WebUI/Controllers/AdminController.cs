@@ -33,17 +33,25 @@ namespace ComputerStore.WebUI.Controllers
         }
         
         [HttpPost]
-        public ActionResult EditCPU(CPU cpu)
+        public ActionResult EditCPU(CPU cpu, HttpPostedFileBase image = null)
         {
+
             if (ModelState.IsValid)
             {
+
+                if (image != null)
+                {
+                    cpu.ImageMimeType = image.ContentType;
+                    cpu.ImageData = new byte[image.ContentLength]; // создание массива byte
+                    image.InputStream.Read(cpu.ImageData, 0, image.ContentLength); // чтение cpu.ImageData с 0 до image.ContentLength
+                }
                 CPURepository.SaveChanges(cpu);
                 TempData["message"] = string.Format("Изменения в процессоре \"{0}\" были сохранены", cpu.Name);
                 return RedirectToAction("CPU");
+
             }
             else
             {
-                // Что-то не так со значениями данных
                 return View(cpu);
             }
         }

@@ -1,54 +1,125 @@
-﻿@model ComputerStore.Domain.Entities.CPU
+﻿
+@model ComputerStore.Domain.Entities.CPU
+
 @{
-    ViewBag.Title = "EditCPU";
+    ViewBag.Title = "Админ панель: редактирование товара";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="panel">
     <div class="panel-heading">
-        <h2>Редактирование процессора @Model.Name</h2>
+        <h3>Редактирование процессора @Model.Name</h3>
     </div>
-    @using (Html.BeginForm())
-    {
-<div class="panel-body">
-        @*@Html.EditorForModel()*@
-        @Html.TextBoxFor(x => x.Brand, new { @class = "fname-text-field", @placeholder = "Производитель" })
-        <br />
-        @Html.TextBoxFor(x => x.Name, new { @class = "fname-text-field", @placeholder = "Название" })
-        <br />
 
-        @Html.TextBoxFor(x => x.Cores, new { @class = "fname-text-field", @placeholder = "Ядра" })
-        <br />
-        @Html.TextBoxFor(x => x.Streams, new { @class = "fname-text-field", @placeholder = "Потоки" })
-        <br />
-        @Html.TextBoxFor(x => x.Frequency, new { @class = "fname-text-field", @placeholder = "Частота" })
-        <br />
-        @Html.TextBoxFor(x => x.Price, new { @class = "fname-text-field", @placeholder = "Цена" })
-        <br />
-        <div class="fname-text-field">
-            @Html.TextAreaFor(x => x.Description, 10, 60, null)
-        </div>
-</div>
-        
-        <div class="panel-footer">
-            <input type="submit" value="Сохранить" class="btn btn-outline-dark" />
-            @Html.ActionLink("Отменить изменения", "CPU", null, new
+    @using (Html.BeginForm("EditCPU", "Admin",
+        FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.CPUId)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
             {
-                @class = "btn btn-outline-danger"
+                switch (property.PropertyName)
+                {
+                    case "CPUId":
+                    case "ImageData":
+                    case "ImageMimeType":
+                        // Ничего не делать
+                        break;
+                    default:
+                        <div class="form-group">
+                            <label>@(property.DisplayName ?? property.PropertyName)</label>
+                            @if (property.PropertyName == "Description")
+                            {
+                                @Html.TextArea(property.PropertyName, null,
+                                    new { @class = "form-control", rows = 5 })
+                            }
+                            else
+                            {
+                                @Html.TextBox(property.PropertyName, null,
+                                    new { @class = "form-control" })
+                            }
+                            @Html.ValidationMessage(property.PropertyName)
+                        </div>
+                        break;
+                }
+            }
+            <div class="form-group">
+                <div style="position:relative;">
+                    <a class='button-pic' href='javascript:;'>
+                        Фотография товара
+                        <input type="file" name="Image" size="40"
+                               style="position:absolute;z-index:2;top:0;
+                                left:0;filter: alpha(opacity=0); opacity:0;
+                                background-color:transparent;color:transparent;"
+                               onchange='$("#upload-file-info").html($(this).val());'>
+                    </a>
+                    <span class='label label-info' id="upload-file-info"></span>
+                </div>
+                @if (Model.ImageData == null)
+                {
+                    <div class="form-control-static">Нет картинки</div>
+                }
+                else
+                {
+                    <div class="photo">
+
+
+                        <img class="img-thumbnail" width="150" height="150"
+                             src="@Url.Action("GetImage", "CPU",
+                                new { Model.CPUId })" />
+                        <h2><span>Старое фото</span></h2>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+            @Html.ActionLink("Отменить изменения", "Index", null, new
+            {
+                @class = "btn btn-default"
             })
         </div>
-
     }
 </div>
+
 <style>
-    .fname-text-field {
-        margin: 5px;
+    .form-group{
+        width: 400px;
+        padding-left: 10px;
+        padding-top: 5px;
+        
     }
-    .panel-footer{
-        margin: 5px;
+    .button-pic{
+        color: black;
+        padding-left: 2px;
+    }
+    .button-pic:focus{
+        border-bottom: 1px black solid;
+    }
+    .photo {
+        position: absolute;
+        
+    }
+        .photo h2 {
+            left: 0;
+            position: absolute;
+            top: 105px;
+            width: 100%;
+            left: 5px;
+            
+        }
+    .photo h2 span{
+        background: #222;
+        border-radius: 2px;
+        color: #fff;
+        font: 21px arial;
+            line-height: 29px;
+            padding: 3px 5px;
+
+
+    }
+    .panel-footer {
+        margin-top: 155px;
+        margin-left: 10px;
     }
 </style>
-
-
-
-

@@ -47,7 +47,17 @@
                                 <div class="pricing-card__price">
                                     <h4> @p.Price.ToString("# ₽")<span></span></h4>
                                 </div>
-                                <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
+                                @if (p.ImageData == null)
+                                {
+                                    <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
+                                }
+                                else
+                                {
+                                    <img class="picture" width="130" height="130"
+                                         src="@Url.Action("GetImage", "CPU",
+                                      new { p.CPUId })" />
+                                }
+                                @*<img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">*@
                                 @*<img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">*@
                             </div>
 
@@ -101,28 +111,28 @@
 
                                 @*<div class="container">
 
-            <div class="dropdown">
-               <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <div class="dropdown">
+                                           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
 
-                  Характеристики
-                    <span class="caret"></span>
-                </button>
-                                    <ul class="dropdown-menu">
-                <li><a>@p.Name</a></li>
-                <li><a>@p.Streams</a></li>
-            </ul>
-             </div>
-        </div>*@
-                            <div class="characteristic">
-                                Характеристики
-                                <br />
-                                Ядра: @p.Cores
-                                <br />  
-                                Частота: @p.Frequency
-                                <br />
-                                Потоки: @p.Streams
-                                <br />
-                            </div>
+                                              Характеристики
+                                                <span class="caret"></span>
+                                            </button>
+                                                                <ul class="dropdown-menu">
+                                            <li><a>@p.Name</a></li>
+                                            <li><a>@p.Streams</a></li>
+                                        </ul>
+                                         </div>
+                                    </div>*@
+                                <div class="characteristic">
+                                    Характеристики
+                                    <br />
+                                    Ядра: @p.Cores
+                                    <br />
+                                    Частота: @p.Frequency
+                                    <br />
+                                    Потоки: @p.Streams
+                                    <br />
+                                </div>
                                 <style>
 
                                     .characteristic {
@@ -132,16 +142,15 @@
                                         font-size: 13px;
                                         padding: 5px;
                                     }
-                                    
                                 </style>
                                 <br />
                                 @Html.Partial("CPUSummary", p)
                                 @using (Html.BeginForm("AddToCart", "Cart"))
                                 {
                                     @*<div class="pull-right">
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                <input type="submit" class="btn btn-success" value="Добавить в корзину" />
-            </div>*@
+                                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                            <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+                                        </div>*@
                                 }
                                 @*<div class="pricing-card__button"><a href="">Select</a></div>*@
 
@@ -149,9 +158,9 @@
 
 
                                 @*<ul class="list-group">
-            <li class="list-group-item">@p.Cores</li>
-            <li class="list-group-item">@p.Frequency</li>
-        </ul>*@
+                                        <li class="list-group-item">@p.Cores</li>
+                                        <li class="list-group-item">@p.Frequency</li>
+                                    </ul>*@
 
 
 
@@ -159,21 +168,21 @@
 
 
                             </div>
-                            </div>
+                        </div>
 
-                      
+
 
 
 
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
-
     }
 </div>
+
 
 @*<div>
         @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))

@@ -36,5 +36,20 @@ namespace ComputerStore.WebUI.Controllers
             };
             return View(model);
         }
+
+        public FileContentResult GetImage(int cpuid)
+        {
+            CPU cpu = repository.CPUs
+                .FirstOrDefault(c => c.CPUId == cpuid);
+            if (cpu != null)
+            {
+                return File(cpu.ImageData, cpu.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
     }
 }

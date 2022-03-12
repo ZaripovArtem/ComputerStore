@@ -28,6 +28,8 @@ namespace ComputerStore.Domain.Concrete
                     dbEntry.Streams = cpu.Streams;
                     dbEntry.Frequency = cpu.Frequency;
                     dbEntry.Price = cpu.Price;
+                    dbEntry.ImageData = cpu.ImageData; // 
+                    dbEntry.ImageMimeType = cpu.ImageMimeType; //
                 }
             }
             context.SaveChanges();

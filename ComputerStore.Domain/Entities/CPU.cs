@@ -35,6 +35,9 @@ namespace ComputerStore.Domain.Entities
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Введите положительное значение для цены")]
         public decimal Price { get; set; }
+        public byte[] ImageData { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public string ImageMimeType { get; set; }
 
     }
 }
