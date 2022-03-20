@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ComputerStore.Domain.Entities;
 using ComputerStore.Domain.Abstract;
 using ComputerStore.WebUI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ComputerStore.WebUI.Controllers
 {
@@ -19,14 +20,32 @@ namespace ComputerStore.WebUI.Controllers
         }
 
 
-        public ViewResult List(int page = 1)
+        public ViewResult List(int page = 1, SortState sortState = SortState.NameAsc)
         {
+            IEnumerable<CPU> CPUs = repository.CPUs;
+            int pageSize = 2; // количество товара на 1 странице
+            // сортировка
+            switch (sortState)
+            {
+                case SortState.NameDesc:
+                    CPUs = CPUs.OrderByDescending(p => p.Name);
+                    break;
+                case SortState.PriceAsc:
+                    CPUs = CPUs.OrderBy(p => p.Price);
+                    break;
+                case SortState.PriceDesc:
+                    CPUs = CPUs.OrderByDescending(p => p.Price);
+                    break;
+                default:
+                    CPUs = CPUs.OrderBy(p => p.Name)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize);
+                    break;
+            }
+
             CPUsListViewModel model = new CPUsListViewModel
             {
-                CPUs = repository.CPUs
-                    .OrderBy(c => c.CPUId)
-                    .Skip((page - 1) * pageSize)
-                    .Take(pageSize),
+                CPUs = CPUs,
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
@@ -34,6 +53,7 @@ namespace ComputerStore.WebUI.Controllers
                     TotalItems = repository.CPUs.Count()
                 }
             };
+
             return View(model);
         }
 
@@ -49,7 +69,6 @@ namespace ComputerStore.WebUI.Controllers
             {
                 return null;
             }
-
         }
     }
 }

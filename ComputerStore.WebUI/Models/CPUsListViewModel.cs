@@ -6,6 +6,7 @@ namespace ComputerStore.WebUI.Models
     public class CPUsListViewModel
     {
         public IEnumerable<CPU> CPUs { get; set; }
+        public SortViewModel SortViewModel { get; set; }
         public PagingInfo PagingInfo { get; set; }
     }
 }

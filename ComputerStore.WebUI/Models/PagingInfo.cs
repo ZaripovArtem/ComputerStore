@@ -18,5 +18,8 @@ namespace ComputerStore.WebUI.Models
         {
             get { return (int)Math.Ceiling((decimal)TotalItems / ItemsPerPage); }
         }
+
+
+
     }
 }
