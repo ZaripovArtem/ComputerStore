@@ -13,27 +13,8 @@ namespace ComputerStore.Domain.Entities
         private List<CartLine> lineCollectionCPU = new List<CartLine>(); // для процессоров
         
 
-        public void AddItem(CPU cpu, int quantity, string nname, decimal pprice) //// nname
+        public void AddItem(CPU cpu, int quantity, string nname, decimal pprice)
         {
-            //CartLine line = lineCollectionCPU  ////////////////////////ошибка тут
-            //    .Where(g => g.CPU.CPUId == cpu.CPUId)
-            //    .FirstOrDefault();
-
-            //if (line == null)
-            //{
-            //    lineCollection.Add(new CartLine
-            //    {
-            //        CPU = cpu,
-            //        Quantity = quantity,
-            //        Nname = nname, //////////////вся строка
-            //        Pprice = pprice,
-            //    });
-            //}
-            //else
-            //{
-            //    line.Quantity += quantity;
-            //}
-
             CartLine line = lineCollectionCPU
                 .Where(g => g.CPU.CPUId == cpu.CPUId)
                 .FirstOrDefault();
@@ -53,19 +34,23 @@ namespace ComputerStore.Domain.Entities
             }
             Update();
         }
+        public void Update()
+        {
+            Clear();
+            lineCollection.AddRange(lineCollectionCPU);
+            lineCollection.AddRange(lineCollectionMB);
+        }
+
         public void RemoveLine() // используется для сброса корзины
         {
-           
             lineCollectionMB.Clear();
             lineCollectionCPU.Clear();
             Update();
-
         }
        
         public decimal ComputeTotalValue() ////////Итого:
         {
             return lineCollection.Sum(e => e.Pprice * e.Quantity);
-            //return lineCollection.Sum(e => e.CPU.Price * e.Quantity);
         }
         public void Clear()
         {
@@ -90,7 +75,7 @@ namespace ComputerStore.Domain.Entities
             {
                 lineCollectionMB.Add(new CartLine // добавил MB
                 {
-                    MB = mb,
+                    MB = mb, 
                     Quantity = quantity,
                     Nname = nname,
                     Pprice = pprice
@@ -108,25 +93,7 @@ namespace ComputerStore.Domain.Entities
             lineCollection.RemoveAll(l => l.MB.MBId == mb.MBId);
         }
 
-        //public decimal ComputeTotalValueMB()
-        //{
-        //    return lineCollection.Sum(e => e.MB.Price * e.Quantity);
-
-        //}
-
-
-
-
-
-
-        /////////////////////////////////////////////////////////////////////////////////////
-
-        public void Update()
-        {
-            Clear();
-            lineCollection.AddRange(lineCollectionCPU);
-            lineCollection.AddRange(lineCollectionMB);
-        } 
+       
     }
 
     public class CartLine

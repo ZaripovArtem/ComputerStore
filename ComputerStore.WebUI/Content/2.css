@@ -599,3 +599,12 @@ body {
 .2pp {
    
 }
+.characteristic {
+    border-radius: 5px;
+    border: 1px black solid;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 5px;
+}
+
+

@@ -37,7 +37,9 @@ namespace ComputerStore.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            //// Имитирование реализации интерфейса ICPURepository
+            // Закомментированные строки создают во временном хранилище List
+            // с объектами системы. Без базы данных можно использовать их. 
+
             //Mock<ICPURepository> mock = new Mock<ICPURepository>();
             //mock.Setup(m => m.CPUs).Returns(new List<CPU>
             //{
@@ -48,11 +50,7 @@ namespace ComputerStore.WebUI.Infrastructure
             //kernel.Bind<ICPURepository>().ToConstant(mock.Object);
 
 
-
-
              kernel.Bind<ICPURepository>().To<EFCPURepository>(); // Для базы данных
-
-
 
 
             /////////////////Материнские платы/////////////////////

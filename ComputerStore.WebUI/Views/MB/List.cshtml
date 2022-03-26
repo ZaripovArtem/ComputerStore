@@ -1,89 +1,57 @@
-﻿@using ComputerStore.WebUI.HtmlHelpers
+﻿@using ComputerStore.Domain.Entities
 @using ComputerStore.WebUI.Models
+@using ComputerStore.WebUI.HtmlHelpers
 @model MBsListViewModel
 
+
 @{
-    ViewBag.Title = "Материнские платы";
+    ViewBag.Title = "Процессоры";
 }
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-@*@foreach (var p in @Model.MBs)
-     {
-    <div>
-        <h3> @p.Name</h3>
-        <p>@p.Description</p>
-        <h4>@p.Price.ToString("# руб")</h4>
-    </div>
-     }*@
-
 <div class="row mt-5 mb-2">
-
+    <br />
     @foreach (var p in @Model.MBs)
     {
         <div class="col-lg-4">
-
-
-
-
             <div class="pricing">
                 <div class="container">
+
                     <div class="pricing__grid">
                         <div class="pricing__card pricing-card pricing-card_videocarta">
-
-
-
-
-
-
                             <div class="pricing-card__top">
-
-
-                                <div class="pricing-card__title"><h4>@p.Name</h4></div>
-
-
+                                <div class="pricing-card__title">
+                                    <h4>@p.Name</h4>
+                                </div>
                                 <div class="pricing-card__price">
                                     <h4> @p.Price.ToString("# ₽")<span></span></h4>
                                 </div>
-
-                                @*<img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">*@
-
-
-
-
+                                <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
+                                @*@if (p.ImageData == null)
+        {
+            <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
+        }
+        else
+        {
+            <img class="picture" width="130" height="130"
+                 src="@Url.Action("GetImage", "MB",
+              new { p.MBId })" />
+        }*@
                             </div>
-
 
                             <div class="pricing-card__body">
-
-
                                 <div class="pricing-card__pluses">
-
-
                                     <div class="pricing-card__plus">
-
-
                                         <div class="pricing-card__plus-icon"><h4></h4></div>
                                         <div class="pricing-card__plus-text"></div>
                                     </div>
 
-
-
-
-
                                     <div class="pricing-card__plus">
-
                                         <div class="pricing-card__plus-icon">
-                                            <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
-
                                             @p.Description
-
                                         </div>
-
-
-
-
                                         <div class="pricing-card__plus-text"></div>
                                     </div>
 
@@ -91,32 +59,55 @@
                                         <div class="pricing-card__plus-icon"><h4></h4></div>
                                         <div class="pricing-card__plus-text"></div>
                                     </div>
+
                                     <div class="pricing-card__plus">
 
                                     </div>
+
                                 </div>
+
+                                <div class="characteristic">
+                                    Характеристики
+                                    <br />
+                                    Чипсет: @p.Chipset
+                                    <br />
+                                    Сокет: @p.Soсket
+                                    <br />
+                                    Кол-во портов SATA: @p.SATACount
+                                    <br />
+                                    Кол-во портов SATA-E: @p.SATAECount
+                                    <br />
+                                    Кол-во портов M2: @p.M2Count
+                                    <br />
+                                    Кол-во портов USB: @p.USBCount
+                                    <br />
+                                    Кол-во портов PCI-E x16: @p.PCIEx16Count
+                                    <br />
+                                    Кол-во портов PCI-E x4: @p.PCIEx4Count
+                                    <br />
+                                    Кол-во портов PCI-E x1: @p.PCIEx1Count
+                                    <br />
+                                    Кол-во портов PCI: @p.PCICount
+                                </div>
+                                <br />
                                 @Html.Partial("MBSummary", p)
-                                @using (Html.BeginForm("AddToCartMB", "Cart"))
-                                {
-                                    @*<div class="pull-right">
-                                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                            <input type="submit" class="btn btn-success" value="Добавить в корзину" />
-                                        </div>*@
-                                }
-                                @*<div class="pricing-card__button"><a href="">Select</a></div>*@
-
-
-
-                                
+                                @using (Html.BeginForm("AddToCart", "Cart"))
+                                { }
+                                <style>
+                                    .characteristic {
+                                        border-radius: 5px;
+                                        border: 1px black solid;
+                                        font-weight: bold;
+                                        font-size: 13px;
+                                        padding: 5px;
+                                    }
+                                </style>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
-
     }
 </div>
 

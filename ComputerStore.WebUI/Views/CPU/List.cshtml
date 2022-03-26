@@ -11,40 +11,20 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<style>
-    .testt {
-        position: absolute;
-        width: -300px;
-    }
-</style>
-
 <div class="row mt-5 mb-2">
-    @*<div class="qwe">
-            <label>Название: </label>
-            <input name="name" value="@Model.FilterCPUViewModel.SelectedName" />
-            <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
-        </div>*@
-
-
     <br />
     @foreach (var p in @Model.CPUs)
     {
         <div class="col-lg-4">
-
-
-
-
             <div class="pricing">
                 <div class="container">
 
                     <div class="pricing__grid">
                         <div class="pricing__card pricing-card pricing-card_videocarta">
                             <div class="pricing-card__top">
-
-
-                                <div class="pricing-card__title"><h4>@p.Name</h4></div>
-
-
+                                <div class="pricing-card__title">
+                                    <h4>@p.Name</h4>
+                                </div>
                                 <div class="pricing-card__price">
                                     <h4> @p.Price.ToString("# ₽")<span></span></h4>
                                 </div>
@@ -61,31 +41,16 @@
                             </div>
 
                             <div class="pricing-card__body">
-
-
                                 <div class="pricing-card__pluses">
-
-
                                     <div class="pricing-card__plus">
-
-
                                         <div class="pricing-card__plus-icon"><h4></h4></div>
                                         <div class="pricing-card__plus-text"></div>
                                     </div>
 
                                     <div class="pricing-card__plus">
-
-                                        <div class="pricing-card__plus-icon">
-                                            @*<img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">*@
-
-                                            @p.Description
-
-                                        </div>
-
-
-
-
-
+                                            <div class="pricing-card__plus-icon">
+                                                @p.Description
+                                            </div>
                                         <div class="pricing-card__plus-text"></div>
                                     </div>
 
@@ -99,7 +64,7 @@
                                     </div>
 
                                 </div>
-
+                                
                                 <div class="characteristic">
                                     Характеристики
                                     <br />
@@ -110,8 +75,11 @@
                                     Потоки: @p.Streams
                                     <br />
                                 </div>
+                                <br />
+                                @Html.Partial("CPUSummary", p)
+                                @using (Html.BeginForm("AddToCart", "Cart"))
+                                { }
                                 <style>
-
                                     .characteristic {
                                         border-radius: 5px;
                                         border: 1px black solid;
@@ -120,22 +88,11 @@
                                         padding: 5px;
                                     }
                                 </style>
-                                <br />
-                                @Html.Partial("CPUSummary", p)
-                                @using (Html.BeginForm("AddToCart", "Cart"))
-                                {
-                                    @*<div class="pull-right">
-                                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                            <input type="submit" class="btn btn-success" value="Добавить в корзину" />
-                                        </div>*@
-                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     }
 </div>
