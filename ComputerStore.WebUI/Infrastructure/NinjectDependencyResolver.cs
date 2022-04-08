@@ -49,9 +49,7 @@ namespace ComputerStore.WebUI.Infrastructure
             //});
             //kernel.Bind<ICPURepository>().ToConstant(mock.Object);
 
-
              kernel.Bind<ICPURepository>().To<EFCPURepository>(); // Для базы данных
-
 
             /////////////////Материнские платы/////////////////////
 
@@ -64,15 +62,22 @@ namespace ComputerStore.WebUI.Infrastructure
             //    });
             //kernel.Bind<IMBRepository>().ToConstant(mock.Object);
 
-
-
-
             kernel.Bind<IMBRepository>().To<EFMBRepository>(); //  Для базы данных
 
+            /////////////////Видеокарты/////////////////////
+            
+            //var mock = new Mock<IGPURepository>();
+            //mock.Setup(m => m.GPUs).Returns(new List<GPU>
+            //    {
+            //        new GPU { Name = "test1", Price = 5000 },
+            //        new GPU { Name = "test2", Price = 2000 }
 
+            //    });
+            //kernel.Bind<IGPURepository>().ToConstant(mock.Object);
 
+            kernel.Bind<IGPURepository>().To<EFGPURepository>(); //  Для базы данных
 
-            ////////////////////////////////////////////
+            ////////////////////////////////////////////////
 
             kernel.Bind<IAuthProvider>().To<FormAuthProvider>(); // Для авторизации
            

@@ -115,15 +115,19 @@
   <ItemGroup>
     <Compile Include="Abstract\IAuthProvider.cs" />
     <Compile Include="Abstract\ICPURepository.cs" />
+    <Compile Include="Abstract\IGPURepository.cs" />
     <Compile Include="Abstract\IMBRepository.cs" />
     <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Concrete\EFCPURepository.cs" />
     <Compile Include="Concrete\EFCPUContext.cs" />
+    <Compile Include="Concrete\EFGPUContext.cs" />
+    <Compile Include="Concrete\EFGPURepository.cs" />
     <Compile Include="Concrete\EFMBContext.cs" />
     <Compile Include="Concrete\EFMBRepository.cs" />
     <Compile Include="Concrete\Service.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\CPU.cs" />
+    <Compile Include="Entities\GPU.cs" />
     <Compile Include="Entities\MB.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
