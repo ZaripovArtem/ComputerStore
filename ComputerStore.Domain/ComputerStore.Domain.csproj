@@ -118,6 +118,7 @@
     <Compile Include="Abstract\IGPURepository.cs" />
     <Compile Include="Abstract\IMBRepository.cs" />
     <Compile Include="Abstract\IOrderProcessor.cs" />
+    <Compile Include="Abstract\Product.cs" />
     <Compile Include="Concrete\EFCPURepository.cs" />
     <Compile Include="Concrete\EFCPUContext.cs" />
     <Compile Include="Concrete\EFGPUContext.cs" />

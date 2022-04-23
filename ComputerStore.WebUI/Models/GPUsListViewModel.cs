@@ -7,5 +7,6 @@ namespace ComputerStore.WebUI.Models
     {
         public IEnumerable<GPU> GPUs { get; set; }
         public SortViewModel SortViewModel { get; set; }
+        public PagingInfo PagingInfo { get; set; }
     }
 }

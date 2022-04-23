@@ -1,9 +1,106 @@
-﻿@{
-    ViewBag.Title = "List";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using ComputerStore.Domain.Entities
+@using ComputerStore.WebUI.Models
+@using ComputerStore.WebUI.HtmlHelpers
+@model GPUsListViewModel
+
+@{
+    ViewBag.Title = "Видеокарты";
 }
 
-@foreach (var p in Model)
-{
-    @p.Name
-}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class="row mt-5 mb-2">
+    <br />
+    @foreach (var p in @Model.GPUs)
+    {
+        <div class="col-lg-4">
+            <div class="pricing">
+                <div class="container">
+
+                    <div class="pricing__grid">
+                        <div class="pricing__card pricing-card pricing-card_videocarta">
+                            <div class="pricing-card__top">
+                                <div class="pricing-card__title">
+                                    <h4>@p.Name</h4>
+                                </div>
+                                <div class="pricing-card__price">
+                                    <h4> @p.Price.ToString("# ₽")<span></span></h4>
+                                </div>
+                                @if (p.ImageData == null)
+                                {
+                                    <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
+                                }
+                                else
+                                {
+                                    <img class="picture" width="130" height="130"
+                                         src="@Url.Action("GetImage", "GPU",
+                                      new { p.Id })" />
+                                }
+                            </div>
+
+                            <div class="pricing-card__body">
+                                <div class="pricing-card__pluses">
+                                    <div class="pricing-card__plus">
+                                        <div class="pricing-card__plus-icon"><h4></h4></div>
+                                        <div class="pricing-card__plus-text"></div>
+                                    </div>
+
+                                    <div class="pricing-card__plus">
+                                        <div class="pricing-card__plus-icon">
+                                            @p.Description
+                                        </div>
+                                        <div class="pricing-card__plus-text"></div>
+                                    </div>
+
+                                    <div class="pricing-card__plus">
+                                        <div class="pricing-card__plus-icon"><h4></h4></div>
+                                        <div class="pricing-card__plus-text"></div>
+                                    </div>
+
+                                    <div class="pricing-card__plus">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="characteristic">
+                                    Характеристики:
+                                    <br />
+                                    Объем видеопамяти: @p.MemorySize
+                                    <br />
+                                    Тип памяти: @p.MemoryType
+                                    <br />
+                                    Пропускная способность памяти на один контакт: @p.Bandwidth
+                                    <br />
+                                    Разрядность шины памяти: @p.Buswidth
+                                    <br />
+                                    Частота: @p.Frequency
+                                    <br />
+                                    Турбо частота: @p.TurboFrequency
+                                    <br />
+                                </div>
+                                <br />
+                                @Html.Partial("GPUSummary", p)
+                                @using (Html.BeginForm("AddToCartGPU", "Cart"))
+                                { }
+                                <style>
+                                    .characteristic {
+                                        border-radius: 5px;
+                                        border: 1px black solid;
+                                        font-weight: bold;
+                                        font-size: 13px;
+                                        padding: 5px;
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+</div>

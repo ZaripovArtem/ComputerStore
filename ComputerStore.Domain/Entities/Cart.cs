@@ -11,7 +11,8 @@ namespace ComputerStore.Domain.Entities
         private List<CartLine> lineCollection = new List<CartLine>(); // общее
         private List<CartLine> lineCollectionMB = new List<CartLine>(); // для материток
         private List<CartLine> lineCollectionCPU = new List<CartLine>(); // для процессоров
-        
+        private List<CartLine> lineCollectionGPU = new List<CartLine>(); // для видеокарт
+
 
         public void AddItem(CPU cpu, int quantity, string nname, decimal pprice)
         {
@@ -39,12 +40,14 @@ namespace ComputerStore.Domain.Entities
             Clear();
             lineCollection.AddRange(lineCollectionCPU);
             lineCollection.AddRange(lineCollectionMB);
+            lineCollection.AddRange(lineCollectionGPU);
         }
 
         public void RemoveLine() // используется для сброса корзины
         {
             lineCollectionMB.Clear();
             lineCollectionCPU.Clear();
+            lineCollectionGPU.Clear();
             Update();
         }
        
@@ -93,13 +96,38 @@ namespace ComputerStore.Domain.Entities
             lineCollection.RemoveAll(l => l.MB.MBId == mb.MBId);
         }
 
-       
+        ///////////////////////////////ВИДЕОКАРТЫ/////////////////////////////////////
+
+        public void AddItemGPU(GPU gpu, int quantity, string nname, decimal pprice)
+        {
+            CartLine line = lineCollectionGPU
+                .Where(g => g.GPU.Id == gpu.Id)
+                .FirstOrDefault();
+
+            if (line == null)
+            {
+                lineCollectionGPU.Add(new CartLine
+                {
+                    GPU = gpu,
+                    Quantity = quantity,
+                    Nname = nname,
+                    Pprice = pprice
+                });
+            }
+            else
+            {
+                line.Quantity += quantity;
+            }
+            Update();
+        }
+
     }
 
     public class CartLine
     {
         public CPU CPU { get; set; }
         public MB MB { get; set; }
+        public GPU GPU { get; set; } // добавил
         public int Quantity { get; set; }
         public string Nname { get; set; }
         public decimal Pprice { get; set; }

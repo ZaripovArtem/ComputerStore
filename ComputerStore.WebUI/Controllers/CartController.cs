@@ -16,24 +16,21 @@ namespace ComputerStore.WebUI.Controllers
 {
     public class CartController : Controller
     {
-
-       
-
         private readonly Service service;
 
         private IOrderProcessor orderProcessor;///
 
         private ICPURepository repository;
         private IMBRepository MBRepository;
+        private IGPURepository GPURepository;
 
-        public CartController(IMBRepository repo, ICPURepository rep, Service service)
+        public CartController(IMBRepository repo, ICPURepository rep, IGPURepository repGPU, Service service)
         {
             MBRepository = repo;
             repository = rep;
-
+            GPURepository = repGPU;
 
             this.service = service;
-            //orderProcessor = processor;///
         }
         public RedirectToRouteResult AddToCart(Cart cart, int cpuId, string returnUrl) // Cart cart, 
         {
@@ -42,46 +39,16 @@ namespace ComputerStore.WebUI.Controllers
 
             if (cpu != null)
             {
-                //GetCart().AddItem(cpu, 1, cpu.Name, cpu.Price); //////////////cpu.Name
-                cart.AddItem(cpu, 1, cpu.Name, cpu.Price); // изменено
-
+                cart.AddItem(cpu, 1, cpu.Name, cpu.Price);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
 
         public RedirectToRouteResult RemoveFromCart(Cart cart, string returnUrl) // Cart cart   int cpuId,
         {
-
-            //CPU cpu = repository.CPUs
-            //    .FirstOrDefault(g => g.CPUId == cpuId);
-
-            //if (cpu != null)
-            //{
-
-            //    cart.RemoveLine(cpu);
-            //}
-            //cart.RemoveLine(cart);
-
             cart.RemoveLine();
-           
-
             return RedirectToAction("Index", new { returnUrl });
-
-
         }
-
-
-
-
-        //public ViewResult Index(string returnUrl)
-        //{
-        //    return View(new CartIndexViewModel
-        //    {
-        //        Cart = GetCart(),
-        //        ReturnUrl = returnUrl
-        //    });
-        //}
-
 
         public ViewResult Index(Cart cart, string returnUrl)
         {
@@ -96,15 +63,6 @@ namespace ComputerStore.WebUI.Controllers
 
         public RedirectToRouteResult AddToCartMB(Cart cart, int mbId, string returnUrl)
         {
-            //MB mb = MBRepository.MBs
-            //    .FirstOrDefault(g => g.MBId == mbId);
-
-            //if (mb != null)
-            //{
-            //    //GetCart().AddItemMB(mb, 1, mb.Name, mb.Price); //////////////////////////
-            //    cart.AddItemMB(mb, 1, mb.Name, mb.Price);
-            //}
-            //return RedirectToAction("Index", new { returnUrl });
             MB mb = MBRepository.MBs
               .FirstOrDefault(g => g.MBId == mbId);
 
@@ -128,7 +86,19 @@ namespace ComputerStore.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        ///////////////////////////////ВИДЕОКАРТЫ/////////////////////////////////////
 
+        public RedirectToRouteResult AddToCartGPU(Cart cart, int Id, string returnUrl)
+        {
+            GPU gpu = GPURepository.GPUs
+              .FirstOrDefault(g => g.Id == Id);
+
+            if (gpu != null)
+            {
+                cart.AddItemGPU(gpu, 1, gpu.Name, gpu.Price);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
 
 
         /// /////////////////////////////////////////////////////////////////////////////////
@@ -163,8 +133,6 @@ namespace ComputerStore.WebUI.Controllers
                 service.SendEmailCustom(cart, shippingDetails);
                 cart.Clear();
                 cart.RemoveLine();
-                //cart.Clear();
-
                 return View("Completed");
             }
             else
@@ -175,9 +143,9 @@ namespace ComputerStore.WebUI.Controllers
         }
 
 
-        public ViewResult SendEmailCustom(Cart cart, ShippingDetails shippingDetails) /////тут
+        public ViewResult SendEmailCustom(Cart cart, ShippingDetails shippingDetails)
         {
-            service.SendEmailCustom(cart, shippingDetails); //////////тут
+            service.SendEmailCustom(cart, shippingDetails);
             return View("Index");
         }
       
