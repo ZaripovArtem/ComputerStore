@@ -219,6 +219,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\GPU\List.cshtml" />
     <Content Include="Views\Shared\GPUSummary.cshtml" />
+    <Content Include="Views\Admin\GPU.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

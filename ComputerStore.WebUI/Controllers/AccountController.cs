@@ -28,7 +28,7 @@ namespace ComputerStore.WebUI.Controllers
             {
                 if (authProvider.Authenticate(model.UserName, model.Password))
                 {
-                    return Redirect(returnUrl ?? Url.Action("CPU", "Admin")); // В дальенейшем поменять на Index
+                    return Redirect(returnUrl ?? Url.Action("CPU", "Admin")); // В дальенейшем поменять на Admin/Index
                 }
                 else
                 {

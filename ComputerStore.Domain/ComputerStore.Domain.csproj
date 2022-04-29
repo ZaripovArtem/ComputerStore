@@ -127,10 +127,15 @@
     <Compile Include="Concrete\EFMBRepository.cs" />
     <Compile Include="Concrete\Service.cs" />
     <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\Case.cs" />
     <Compile Include="Entities\CPU.cs" />
+    <Compile Include="Entities\FAN.cs" />
     <Compile Include="Entities\GPU.cs" />
     <Compile Include="Entities\MB.cs" />
+    <Compile Include="Entities\Power.cs" />
+    <Compile Include="Entities\RAM.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
+    <Compile Include="Entities\StorageDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

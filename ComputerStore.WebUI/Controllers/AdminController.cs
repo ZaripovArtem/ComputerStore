@@ -13,11 +13,13 @@ namespace ComputerStore.WebUI.Controllers
     {
         ICPURepository CPURepository; // CPU
         IMBRepository MBRepository; // MB
+        IGPURepository GPURepository; // GPU
 
-        public AdminController (ICPURepository CPUrep, IMBRepository MBrep)
+        public AdminController (ICPURepository CPUrep, IMBRepository MBrep, IGPURepository GPUrep)
         {
             CPURepository = CPUrep;
             MBRepository = MBrep;
+            GPURepository = GPUrep;
         }
         // GET: Admin
         public ActionResult CPU()
@@ -31,7 +33,7 @@ namespace ComputerStore.WebUI.Controllers
                 .FirstOrDefault(c => c.CPUId == cpuid);
             return View(cpu);
         }
-        
+
         [HttpPost]
         public ActionResult EditCPU(CPU cpu, HttpPostedFileBase image = null)
         {
@@ -72,5 +74,11 @@ namespace ComputerStore.WebUI.Controllers
         {
             return View("EditCPU", new CPU());
         }
+
+        public ActionResult GPU()
+        {
+            return View(GPURepository.GPUs);
+        }
+        // нужно добавить функционал для GPU
     }
 }

@@ -18,8 +18,6 @@ namespace ComputerStore.WebUI.Controllers
     {
         private readonly Service service;
 
-        private IOrderProcessor orderProcessor;///
-
         private ICPURepository repository;
         private IMBRepository MBRepository;
         private IGPURepository GPURepository;
