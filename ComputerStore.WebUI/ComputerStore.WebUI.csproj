@@ -179,10 +179,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CaseController.cs" />
     <Compile Include="Controllers\CPUController.cs" />
+    <Compile Include="Controllers\FANController.cs" />
     <Compile Include="Controllers\GPUController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MBController.cs" />
+    <Compile Include="Controllers\PowerController.cs" />
+    <Compile Include="Controllers\RAMController.cs" />
+    <Compile Include="Controllers\StorageDeviceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +198,11 @@
     <Compile Include="Models\CartIndexViewModel.cs" />
     <Compile Include="Models\CPUsListViewModel.cs" />
     <Compile Include="Models\FilterCPUViewModel.cs" />
+    <Compile Include="Models\CasesListViewModel.cs" />
+    <Compile Include="Models\FANsListViewModel.cs" />
+    <Compile Include="Models\PowersListViewModel.cs" />
+    <Compile Include="Models\RAMsListViewModel.cs" />
+    <Compile Include="Models\StorageDevicesListViewModel.cs" />
     <Compile Include="Models\GPUsListViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MBsListViewModel.cs" />
@@ -220,6 +230,17 @@
     <Content Include="Views\GPU\List.cshtml" />
     <Content Include="Views\Shared\GPUSummary.cshtml" />
     <Content Include="Views\Admin\GPU.cshtml" />
+    <Content Include="Views\Admin\EditGPU.cshtml" />
+    <Content Include="Views\Shared\StorageDeviceSummary.cshtml" />
+    <Content Include="Views\Shared\CaseSummary.cshtml" />
+    <Content Include="Views\Shared\FANSummary.cshtml" />
+    <Content Include="Views\Shared\PowerSummary.cshtml" />
+    <Content Include="Views\Shared\RAMSummary.cshtml" />
+    <Content Include="Views\Case\List.cshtml" />
+    <Content Include="Views\FAN\List.cshtml" />
+    <Content Include="Views\Power\List.cshtml" />
+    <Content Include="Views\RAM\List.cshtml" />
+    <Content Include="Views\StorageDevice\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

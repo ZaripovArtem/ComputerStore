@@ -114,11 +114,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAuthProvider.cs" />
+    <Compile Include="Abstract\ICaseRepository.cs" />
+    <Compile Include="Abstract\IFANRepository.cs" />
+    <Compile Include="Abstract\IPowerRepository.cs" />
+    <Compile Include="Abstract\IRAMRepository.cs" />
+    <Compile Include="Abstract\IStorageDeviceRepository.cs" />
     <Compile Include="Abstract\ICPURepository.cs" />
     <Compile Include="Abstract\IGPURepository.cs" />
     <Compile Include="Abstract\IMBRepository.cs" />
     <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Abstract\Product.cs" />
+    <Compile Include="Concrete\EFCaseRepository.cs" />
+    <Compile Include="Concrete\EFFANRepository.cs" />
+    <Compile Include="Concrete\EFPowerRepository.cs" />
+    <Compile Include="Concrete\EFRAMRepository.cs" />
+    <Compile Include="Concrete\EFStorageDeviceRepository.cs" />
+    <Compile Include="Concrete\EFStorageDeviceContext.cs" />
+    <Compile Include="Concrete\EFRAMContext.cs" />
+    <Compile Include="Concrete\EFPowerContext.cs" />
+    <Compile Include="Concrete\EFFANContext.cs" />
+    <Compile Include="Concrete\EFCaseContext.cs" />
     <Compile Include="Concrete\EFCPURepository.cs" />
     <Compile Include="Concrete\EFCPUContext.cs" />
     <Compile Include="Concrete\EFGPUContext.cs" />

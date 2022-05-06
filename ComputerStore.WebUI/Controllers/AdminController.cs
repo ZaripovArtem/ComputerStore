@@ -80,5 +80,50 @@ namespace ComputerStore.WebUI.Controllers
             return View(GPURepository.GPUs);
         }
         // нужно добавить функционал для GPU
+        public ViewResult EditGPU(int id)
+        {
+            GPU gpu = GPURepository.GPUs
+                .FirstOrDefault(c => c.Id == id);
+            return View(gpu);
+        }
+
+        [HttpPost]
+        public ActionResult EditGPU(GPU gpu, HttpPostedFileBase image = null)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                if (image != null)
+                {
+                    gpu.ImageMimeType = image.ContentType;
+                    gpu.ImageData = new byte[image.ContentLength]; // создание массива byte
+                    image.InputStream.Read(gpu.ImageData, 0, image.ContentLength); // чтение cpu.ImageData с 0 до image.ContentLength
+                }
+                GPURepository.SaveChanges(gpu);
+                TempData["message"] = string.Format("Изменения в видеокарте \"{0}\" были сохранены", gpu.Name);
+                return RedirectToAction("GPU");
+            }
+            else
+            {
+                return View(gpu);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteGPU(int Id)
+        {
+            CPU deletedProduct = CPURepository.DeleteProduct(Id);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = string.Format("Видеокарта \"{0}\" была удалена",
+                    deletedProduct.Name);
+            }
+            return RedirectToAction("GPU");
+        }
+        public ViewResult CreateGPU()
+        {
+            return View("EditGPU", new GPU());
+        }
     }
 }

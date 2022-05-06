@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerStore.Domain.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComputerStore.Domain.Entities
 {
-    public class StorageDevice
+    public class StorageDevice : Product
     {
         [Display(Name = "Тип памяти")]
         [Required(ErrorMessage = "Выберите тип памяти")]

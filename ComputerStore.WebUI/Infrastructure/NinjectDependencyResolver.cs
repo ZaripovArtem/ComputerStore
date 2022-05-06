@@ -79,6 +79,22 @@ namespace ComputerStore.WebUI.Infrastructure
 
             ////////////////////////////////////////////////
 
+
+            //var mock = new Mock<ICaseRepository>();
+            //mock.Setup(m => m.Cases).Returns(new List<Case>
+            //    {
+            //        new Case { Name = "test1", Price = 5000 },
+            //        new Case { Name = "test2", Price = 2000 }
+
+            //    });
+            //kernel.Bind<ICaseRepository>().ToConstant(mock.Object);
+
+            kernel.Bind<ICaseRepository>().To<EFCaseRepository>();
+            kernel.Bind<IFANRepository>().To<EFFANRepository>();
+            kernel.Bind<IPowerRepository>().To<EFPowerRepository>();
+            kernel.Bind<IRAMRepository>().To<EFRAMRepository>();
+            kernel.Bind<IStorageDeviceRepository>().To<EFStorageDeviceRepository>();
+
             kernel.Bind<IAuthProvider>().To<FormAuthProvider>(); // Для авторизации
            
 

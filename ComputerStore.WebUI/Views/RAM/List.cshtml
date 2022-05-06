@@ -1,18 +1,18 @@
 ﻿@using ComputerStore.Domain.Entities
 @using ComputerStore.WebUI.Models
 @using ComputerStore.WebUI.HtmlHelpers
-@model CPUsListViewModel
+@model RAMsListViewModel
 
 
 @{
-    ViewBag.Title = "Процессоры";
+    ViewBag.Title = "Блоки питания";
 }
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <div class="row mt-5 mb-2">
         <br />
-        @foreach (var p in @Model.CPUs)
+        @foreach (var p in @Model.RAMs)
         {
             <div class="col-lg-4">
                 <div class="pricing">
@@ -34,8 +34,8 @@
                                     else
                                     {
                                         <img class="picture" width="130" height="130"
-                                             src="@Url.Action("GetImage", "CPU",
-                                      new { p.CPUId })" />
+                                             src="@Url.Action("GetImage", "Power",
+                                      new { p.Id })" />
                                     }
                                 </div>
 
@@ -67,17 +67,17 @@
                                     <div class="characteristic">
                                         Характеристики
                                         <br />
-                                        Ядра: @p.Cores
+                                        Тип памяти: @p.TypeOfMemory
+                                        <br />
+                                        Объем модуля памяти: @p.Memory
                                         <br />
                                         Частота: @p.Frequency
                                         <br />
-                                        Потоки: @p.Streams
-                                        <br />
                                     </div>
                                     <br />
-                                    @Html.Partial("CPUSummary", p)
-                                    @using (Html.BeginForm("AddToCart", "Cart"))
-                                    { }
+                                    @Html.Partial("RAMSummary", p)
+                                    @*@using (Html.BeginForm("AddToCart", "Cart"))
+                                    { }*@
                                     <style>
                                         .characteristic {
                                             border-radius: 5px;

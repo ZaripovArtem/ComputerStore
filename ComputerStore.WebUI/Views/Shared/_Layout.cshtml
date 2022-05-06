@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <a href="/" class="logo"> logo </a>
+        <a href="/" class="logo">ComputerStore</a>
         <ul>
             <li><a href="/" class="active">Главная</a></li>
             <li><a href="/">Контакты</a></li>
@@ -20,8 +20,18 @@
     
     <section>
     </section>
-    <div class="container mt-5">
+    <div class="container mt-5 ">
         @RenderBody()
     </div>
 </body>
 </html>
+<style>
+    .logo {
+        text-transform: uppercase;
+        background: linear-gradient(90deg, rgba(230,108,21,1) 8%, rgba(121,9,25,1) 35%, rgba(143,0,255,1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: #0B2349;
+        margin: 20px;
+    }
+</style>

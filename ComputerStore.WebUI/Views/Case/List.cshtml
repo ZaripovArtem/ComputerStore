@@ -1,17 +1,17 @@
 ﻿@using ComputerStore.Domain.Entities
 @using ComputerStore.WebUI.Models
 @using ComputerStore.WebUI.HtmlHelpers
-@model GPUsListViewModel
+@model CasesListViewModel
 
 @{
-    ViewBag.Title = "Видеокарты";
+    ViewBag.Title = "Корпуса";
 }
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <div class="row mt-5 mb-2">
     <br />
-    @foreach (var p in @Model.GPUs)
+    @foreach (var p in @Model.Cases)
     {
         <div class="col-lg-4">
             <div class="pricing">
@@ -33,7 +33,7 @@
                                 else
                                 {
                                     <img class="picture" width="130" height="130"
-                                         src="@Url.Action("GetImage", "GPU",
+                                         src="@Url.Action("GetImage", "Case",
                                       new { p.Id })" />
                                 }
                             </div>
@@ -66,23 +66,12 @@
                                 <div class="characteristic">
                                     Характеристики:
                                     <br />
-                                    Объем видеопамяти: @p.MemorySize
-                                    <br />
-                                    Тип памяти: @p.MemoryType
-                                    <br />
-                                    Пропускная способность памяти на один контакт: @p.Bandwidth
-                                    <br />
-                                    Разрядность шины памяти: @p.Buswidth
-                                    <br />
-                                    Частота: @p.Frequency
-                                    <br />
-                                    Турбо частота: @p.TurboFrequency
-                                    <br />
+                                    
                                 </div>
                                 <br />
-                                @Html.Partial("GPUSummary", p)
-                                @using (Html.BeginForm("AddToCartGPU", "Cart"))
-                                { }
+                                @Html.Partial("CaseSummary", p)
+                                @*@using (Html.BeginForm("AddToCartGPU", "Cart"))
+                                { }*@
                                 <style>
                                     .characteristic {
                                         border-radius: 5px;

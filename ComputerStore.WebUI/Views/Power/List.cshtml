@@ -1,18 +1,18 @@
 ﻿@using ComputerStore.Domain.Entities
 @using ComputerStore.WebUI.Models
 @using ComputerStore.WebUI.HtmlHelpers
-@model CPUsListViewModel
+@model PowersListViewModel
 
 
 @{
-    ViewBag.Title = "Процессоры";
+    ViewBag.Title = "Блоки питания";
 }
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <div class="row mt-5 mb-2">
         <br />
-        @foreach (var p in @Model.CPUs)
+        @foreach (var p in @Model.Powers)
         {
             <div class="col-lg-4">
                 <div class="pricing">
@@ -34,8 +34,8 @@
                                     else
                                     {
                                         <img class="picture" width="130" height="130"
-                                             src="@Url.Action("GetImage", "CPU",
-                                      new { p.CPUId })" />
+                                             src="@Url.Action("GetImage", "Power",
+                                      new { p.Id })" />
                                     }
                                 </div>
 
@@ -67,17 +67,21 @@
                                     <div class="characteristic">
                                         Характеристики
                                         <br />
-                                        Ядра: @p.Cores
+                                        Мощность (номинал): @p.Capacity
                                         <br />
-                                        Частота: @p.Frequency
+                                        Разъемы для питания процессора: @p.ConnectorCPU
                                         <br />
-                                        Потоки: @p.Streams
+                                        Разъемы для питания видеокарты (PCI-E): @p.ConnectorPCIE
+                                        <br />
+                                        Количество разъемов 15-pin SATA: @p.CountSATA
+                                        <br />
+                                        Количество разъемов 4-pin Molex: @p.CountMolex
                                         <br />
                                     </div>
                                     <br />
-                                    @Html.Partial("CPUSummary", p)
-                                    @using (Html.BeginForm("AddToCart", "Cart"))
-                                    { }
+                                    @Html.Partial("PowerSummary", p)
+                                    @*@using (Html.BeginForm("AddToCart", "Cart"))
+                                    { }*@
                                     <style>
                                         .characteristic {
                                             border-radius: 5px;
