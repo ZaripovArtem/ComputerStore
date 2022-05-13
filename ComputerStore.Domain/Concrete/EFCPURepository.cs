@@ -14,11 +14,11 @@ namespace ComputerStore.Domain.Concrete
         }
         public void SaveChanges(CPU cpu)
         {
-            if (cpu.CPUId == 0)
+            if (cpu.Id == 0)
                 context.CPUs.Add(cpu);
             else
             {
-                CPU dbEntry = context.CPUs.Find(cpu.CPUId);
+                CPU dbEntry = context.CPUs.Find(cpu.Id);
                 if (dbEntry != null)
                 {
                     dbEntry.Brand = cpu.Brand;
@@ -34,9 +34,9 @@ namespace ComputerStore.Domain.Concrete
             }
             context.SaveChanges();
         }
-        public CPU DeleteProduct(int CPUId)
+        public CPU DeleteProduct(int Id)
         {
-            CPU dbEntry = context.CPUs.Find(CPUId);
+            CPU dbEntry = context.CPUs.Find(Id);
             if (dbEntry != null)
             {
                 context.CPUs.Remove(dbEntry);

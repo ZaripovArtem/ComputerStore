@@ -11,6 +11,17 @@
 
 <div class="row mt-5 mb-2">
     <br />
+
+    <form method="get">
+        <div class="Search">
+            @Html.DropDownList("Brand", Model.Brand as SelectList,
+                       htmlAttributes: new { @class = "form-control" })
+            <input name="name" class="form-control" placeholder="Название" />
+
+            <input type="submit" value="Поиск" class="btn btn-primary" />
+        </div>
+    </form>
+
     @foreach (var p in @Model.GPUs)
     {
         <div class="col-lg-4">
@@ -21,7 +32,7 @@
                         <div class="pricing__card pricing-card pricing-card_videocarta">
                             <div class="pricing-card__top">
                                 <div class="pricing-card__title">
-                                    <h4>@p.Name</h4>
+                                    <h4>@p.Brand @p.Name</h4>
                                 </div>
                                 <div class="pricing-card__price">
                                     <h4> @p.Price.ToString("# ₽")<span></span></h4>
@@ -102,6 +113,23 @@
 
                                     .container {
                                         padding: 25px;
+                                    }
+
+                                    .form-control {
+                                        width: 15%;
+                                        display: inline;
+                                        margin: 12px;
+                                        margin-left: 2%;
+                                    }
+
+                                    .Search {
+                                        width: 100%;
+                                        height: 100px;
+                                        margin-left: 1%;
+                                    }
+
+                                    .btn {
+                                        height: 32px;
                                     }
                                 </style>
                             </div>

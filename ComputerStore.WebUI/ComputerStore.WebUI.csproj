@@ -169,6 +169,7 @@
   <ItemGroup>
     <Content Include="Content\2.css" />
     <Content Include="Content\ErrorStyles.css" />
+    <Content Include="Content\Admin.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -197,6 +198,14 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\CartIndexViewModel.cs" />
     <Compile Include="Models\CPUsListViewModel.cs" />
+    <Compile Include="Models\EditMBsViewModel.cs" />
+    <Compile Include="Models\EditGPUsViewModel.cs" />
+    <Compile Include="Models\EditRAMsViewModel.cs" />
+    <Compile Include="Models\EditFANsViewModel.cs" />
+    <Compile Include="Models\EditPowersViewModel.cs" />
+    <Compile Include="Models\EditStorageDevicesViewModel.cs" />
+    <Compile Include="Models\EditCasesViewModel.cs" />
+    <Compile Include="Models\EditCPUsViewModel.cs" />
     <Compile Include="Models\FilterCPUViewModel.cs" />
     <Compile Include="Models\CasesListViewModel.cs" />
     <Compile Include="Models\FANsListViewModel.cs" />
@@ -241,6 +250,7 @@
     <Content Include="Views\Power\List.cshtml" />
     <Content Include="Views\RAM\List.cshtml" />
     <Content Include="Views\StorageDevice\List.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

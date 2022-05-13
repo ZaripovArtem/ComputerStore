@@ -1,17 +1,31 @@
-﻿@model IEnumerable<ComputerStore.Domain.Entities.CPU>
-    @{
-        ViewBag.Title = "CPU";
-        Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    }
+﻿@using ComputerStore.WebUI.Models
+@model EditCPUsViewModel
+@{
+    ViewBag.Title = "CPU";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
 
+<head>
+    <link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="name">
+    <h3>Список процессоров</h3>
+</div>
+
+        
+
+    <form method="get">
+        <div class="Search">
+            @Html.ActionLink("Добавить товар", "CreateCPU", null,
+                   new { @class = "btn btn-primary" })
+            <input name="name" class="form-control" placeholder="Название" />
+            <input type="submit" value="Поиск" class="btn btn-primary" />
+        </div>
+    </form>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Список процессоров</h3>
-            <div class="panel-footer">
-                @Html.ActionLink("Добавить товар", "CreateCPU", null,
-                    new { @class = "btn btn-secondary" })
-            </div>
         </div>
         <div class="panel-body">
             <table class="table table-striped table-condensed table-bordered">
@@ -19,20 +33,20 @@
                     <th class="text-right">ID</th>
                     <th>Название</th>
                     <th class="text-right">Цена</th>
-                    <th class="text-center">Действия</th>
+                    <th class="text-center"></th>
                 </tr>
-                @foreach (var item in Model)
+                @foreach (var item in @Model.CPUs)
                 {
                     <tr>
-                        <td class="text-right">@item.CPUId</td>
-                        <td>@Html.ActionLink(item.Name, "EditCPU", new { item.CPUId })</td>
+                        <td class="text-right">@item.Id</td>
+                        <td>@Html.ActionLink(item.Name, "EditCPU", new { item.Id })</td>
                         <td class="text-right">@item.Price.ToString("# ₽")</td>
                         <td class="text-center">
                             @using (Html.BeginForm("DeleteProduct", "Admin"))
                             {
-                                @Html.Hidden("CPUId", item.CPUId)
+                                @Html.Hidden("Id", item.Id)
                                 <input type="submit"
-                                       class="btn btn-secondary"
+                                       class="btn btn-primary"
                                        value="Удалить" />
                             }
                         </td>
@@ -41,9 +55,9 @@
             </table>
         </div>
     </div>
+
 <style>
-    .panel-footer{
-        margin-left: 82%;
-        margin-bottom: 10px;
+    .name{
+        margin-left: 1%;
     }
 </style>

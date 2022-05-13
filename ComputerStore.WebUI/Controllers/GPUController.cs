@@ -20,7 +20,7 @@ namespace ComputerStore.WebUI.Controllers
             repository = rep;
         }
 
-        public ViewResult List(int page = 1, SortState sortState = SortState.NameAsc)
+        public ViewResult List(int page = 1, SortState sortState = SortState.NameAsc, string name = "", string brand = "")
         {
             IEnumerable<GPU> GPUs = repository.GPUs;
             int pageSize = 4; // количество товара на 1 странице
@@ -43,6 +43,34 @@ namespace ComputerStore.WebUI.Controllers
                     break;
             }
 
+            if (!String.IsNullOrEmpty(brand))
+            {
+                GPUs = GPUs.Where(p => p.Brand.Contains(brand));
+            }
+            if (!String.IsNullOrEmpty(name))
+            {
+                GPUs = GPUs.Where(p => p.Name.Contains(name));
+            }
+
+            var Brand_Order = new List<string>();
+            Brand_Order.Add("");
+            int check = 0;
+            foreach (var product in GPUs)
+            {
+                foreach (var br_list in Brand_Order)
+                {
+                    if (br_list == product.Brand)
+                    {
+                        check++;
+                    }
+                }
+                if (check == 0)
+                {
+                    Brand_Order.Add(product.Brand);
+                }
+                check = 0;
+            }
+
             GPUsListViewModel model = new GPUsListViewModel
             {
                 GPUs = GPUs,
@@ -51,7 +79,9 @@ namespace ComputerStore.WebUI.Controllers
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = repository.GPUs.Count()
-                }
+                },
+                Name = name,
+                Brand = new SelectList(Brand_Order)
             };
 
             return View(model);

@@ -8,10 +8,20 @@
     ViewBag.Title = "Процессоры";
 }
 
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <div class="row mt-5 mb-2">
-        <br />
+<div class="row mt-5 mb-2">
+    <br />
+
+    <form method="get">
+        <div class="Search">
+            @Html.DropDownList("Brand", Model.Brand as SelectList,
+                       htmlAttributes: new { @class = "form-control" })
+            <input name="name" class="form-control" placeholder="Название" />
+
+            <input type="submit" value="Поиск" class="btn btn-outline-primary" />
+        </div>
+    </form>
+
         @foreach (var p in @Model.CPUs)
         {
             <div class="col-lg-4">
@@ -22,7 +32,7 @@
                             <div class="pricing__card pricing-card pricing-card_videocarta">
                                 <div class="pricing-card__top">
                                     <div class="pricing-card__title">
-                                        <h4>@p.Name</h4>
+                                        <h4>@p.Brand @p.Name</h4>
                                     </div>
                                     <div class="pricing-card__price">
                                         <h4> @p.Price.ToString("# ₽")<span></span></h4>
@@ -35,7 +45,7 @@
                                     {
                                         <img class="picture" width="130" height="130"
                                              src="@Url.Action("GetImage", "CPU",
-                                      new { p.CPUId })" />
+                                      new { p.Id })" />
                                     }
                                 </div>
 
@@ -88,7 +98,6 @@
                                         }
 
                                         .row {
-                                            
                                             border-radius: 8px;
                                             background-image: url(https://imgur.com/Pfqb8py.png);
                                             -webkit-box-shadow: -2px 6px 29px 2px rgba(116, 118, 120, 0.38);
@@ -99,8 +108,23 @@
                                         .container {
                                             padding: 25px;
                                         }
-                                        
-                                       
+
+                                        .form-control {
+                                            width: 15%;
+                                            display: inline;
+                                            margin: 12px;
+                                            margin-left: 2%;
+                                        }
+
+                                        .Search {
+                                            width: 100%;
+                                            height: 100px;
+                                            margin-left: 1%;
+                                        }
+
+                                        .btn {
+                                            height: 32px;
+                                        }
                                     </style>
                                 </div>
                             </div>
@@ -109,7 +133,7 @@
                 </div>
             </div>
         }
-    </div>
+</div>
 
     <div>
         <ul class="pagination pagination-lg justify-content-center">

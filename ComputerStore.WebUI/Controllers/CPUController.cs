@@ -20,7 +20,7 @@ namespace ComputerStore.WebUI.Controllers
         }
 
 
-        public ViewResult List(int page = 1, SortState sortState = SortState.NameAsc)
+        public ViewResult List(int page = 1, SortState sortState = SortState.NameAsc, string name = "", string brand = "")
         {
             IEnumerable<CPU> CPUs = repository.CPUs;
             int pageSize = 4; // количество товара на 1 странице
@@ -42,6 +42,33 @@ namespace ComputerStore.WebUI.Controllers
                     .Take(pageSize);
                     break;
             }
+            if (!String.IsNullOrEmpty(brand))
+            {
+                CPUs = CPUs.Where(p => p.Brand.Contains(brand));
+            }
+            if (!String.IsNullOrEmpty(name))
+            {
+                CPUs = CPUs.Where(p => p.Name.Contains(name));
+            }
+
+            var Brand_Order = new List<string>();
+            Brand_Order.Add("");
+            int check = 0; 
+            foreach (var product in CPUs)
+            {
+                foreach(var br_list in Brand_Order)
+                {
+                    if(br_list == product.Brand)
+                    {
+                        check++;
+                    }
+                }
+                if(check == 0)
+                {
+                    Brand_Order.Add(product.Brand);
+                }
+                check = 0;
+            } 
 
             CPUsListViewModel model = new CPUsListViewModel
             {
@@ -51,16 +78,18 @@ namespace ComputerStore.WebUI.Controllers
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = repository.CPUs.Count()
-                }
+                },
+                Name = name,
+                Brand = new SelectList(Brand_Order)
             };
 
             return View(model);
         }
 
-        public FileContentResult GetImage(int cpuid)
+        public FileContentResult GetImage(int id)
         {
             CPU cpu = repository.CPUs
-                .FirstOrDefault(c => c.CPUId == cpuid);
+                .FirstOrDefault(c => c.Id == id);
             if (cpu != null)
             {
                 return File(cpu.ImageData, cpu.ImageMimeType);

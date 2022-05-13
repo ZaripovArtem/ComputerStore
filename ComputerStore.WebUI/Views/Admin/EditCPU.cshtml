@@ -6,76 +6,72 @@
 }
 
 <div class="panel">
-    <div class="panel-heading">
-        <h3>Редактирование процессора @Model.Name</h3>
-    </div>
+   
 
     @using (Html.BeginForm("EditCPU", "Admin",
         FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <div class="panel-body">
-            @Html.HiddenFor(m => m.CPUId)
-            @foreach (var property in ViewData.ModelMetadata.Properties)
-            {
-                switch (property.PropertyName)
-                {
-                    case "CPUId":
-                    case "ImageData":
-                    case "ImageMimeType":
-                        // Ничего не делать
-                        break;
-                    default:
-                        <div class="form-group">
-                            <label>@(property.DisplayName ?? property.PropertyName)</label>
-                            @if (property.PropertyName == "Description")
-                            {
-                                @Html.TextArea(property.PropertyName, null,
-                                    new { @class = "form-control", rows = 5 })
-                            }
-                            else
-                            {
-                                @Html.TextBox(property.PropertyName, null,
-                                    new { @class = "form-control" })
-                            }
-                            @Html.ValidationMessage(property.PropertyName)
-                        </div>
-                        break;
-                }
-            }
-            <div class="form-group">
-                <div style="position:relative;">
-                    <a class='button-pic' href='javascript:;'>
-                        Фотография товара
-                        <input type="file" name="Image" size="40"
-                               style="position:absolute;z-index:2;top:0;
-                                left:0;filter: alpha(opacity=0); opacity:0;
-                                background-color:transparent;color:transparent;"
-                               onchange='$("#upload-file-info").html($(this).val());'>
-                    </a>
-                    <span class='label label-info' id="upload-file-info"></span>
+        <div class="main">
+            <div class="helper">
+                <div class="panel-heading">
+                    <h3>Редактирование процессора @Model.Name</h3>
                 </div>
-                @if (Model.ImageData == null)
-                {
-                    <div class="form-control-static">Нет картинки</div>
-                }
-                else
-                {
-                    <div class="photo">
-                        <img class="img-thumbnail" width="150" height="150"
-                             src="@Url.Action("GetImage", "CPU",
-                                new { Model.CPUId })" />
-                                
-                        <h2><span>Старое фото</span></h2>
+                <div class="panel-body">
+                    @Html.HiddenFor(m => m.Id)
+                    @foreach (var property in ViewData.ModelMetadata.Properties)
+                    {
+                        switch (property.PropertyName)
+                        {
+                            case "Id":
+                            case "ImageData":
+                            case "ImageMimeType":
+                                // Ничего не делать
+                                break;
+                            default:
+                                <div class="form-group">
+                                    <label>@(property.DisplayName ?? property.PropertyName)</label>
+                                    @if (property.PropertyName == "Description")
+                                    {
+                                        @Html.TextArea(property.PropertyName, null,
+                                            new { @class = "form-control", rows = 5 })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBox(property.PropertyName, null,
+                                            new { @class = "form-control" })
+                                    }
+                                    @Html.ValidationMessage(property.PropertyName)
+                                </div>
+                                break;
+                        }
+                    }
+                    <div class="form-group">
+                        <div style="position:relative;">
+                            <input type="file" name="Image">
+                        </div>
+                        @if (Model.ImageData == null)
+                        {
+                            <div class="form-control-static">Нет картинки</div>
+                        }
+                        else
+                        {
+                            <div class="photo">
+                                <img class="img-thumbnail" width="150" height="150"
+                                     src="@Url.Action("GetImage", "CPU",
+                                    new { Model.Id })" />
+                            </div>
+                        }
+
                     </div>
-                }
+                </div>
+                <div class="panel-footer">
+                    <input type="submit" value="Сохранить" class="btn btn-primary" />
+                    @Html.ActionLink("Отменить изменения", "CPU", null, new
+                    {
+                        @class = "btn btn-default"
+                    })
+                </div>
             </div>
-        </div>
-        <div class="panel-footer">
-            <input type="submit" value="Сохранить" class="btn btn-primary" />
-            @Html.ActionLink("Отменить изменения", "CPU", null, new
-            {
-                @class = "btn btn-default"
-            })
         </div>
     }
 </div>
@@ -116,5 +112,24 @@
     .panel-footer {
         margin-top: 155px;
         margin-left: 10px;
+    }
+    .main {
+        width: 100%;
+        height: 100%;
+
+
+    }
+    .helper {
+        -webkit-box-shadow: 0px 5px 26px 1px rgba(34, 60, 80, 0.29);
+        -moz-box-shadow: 0px 5px 26px 1px rgba(34, 60, 80, 0.29);
+        box-shadow: 0px 5px 26px 1px rgba(34, 60, 80, 0.29);
+        position: absolute;
+        left: 30%;
+        top: 10%;
+        border-radius: 12px;
+        height: 900px;
+        width: 1100px;
+        padding-top: 50px;
+        padding-left: 250px;
     }
 </style>

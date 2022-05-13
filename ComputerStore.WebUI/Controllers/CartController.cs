@@ -21,28 +21,27 @@ namespace ComputerStore.WebUI.Controllers
         private ICPURepository repository;
         private IMBRepository MBRepository;
         private IGPURepository GPURepository;
+        private IRAMRepository RAMRepository;
+        private ICaseRepository CaseRepository;
+        private IFANRepository FANRepository;
+        private IPowerRepository PowerRepository;
+        private IStorageDeviceRepository StorageDeviceRepository;
 
-        public CartController(IMBRepository repo, ICPURepository rep, IGPURepository repGPU, Service service)
+        public CartController(IMBRepository repo, ICPURepository rep, IGPURepository repGPU, IRAMRepository repRAM, ICaseRepository repCase, IFANRepository repFAN, IPowerRepository repPower, IStorageDeviceRepository repSD, Service service)
         {
-            MBRepository = repo;
             repository = rep;
+            MBRepository = repo;
             GPURepository = repGPU;
+            RAMRepository = repRAM;
+            CaseRepository = repCase;
+            FANRepository = repFAN;
+            PowerRepository = repPower;
+            StorageDeviceRepository = repSD;
 
             this.service = service;
         }
-        public RedirectToRouteResult AddToCart(Cart cart, int cpuId, string returnUrl) // Cart cart, 
-        {
-            CPU cpu = repository.CPUs
-                .FirstOrDefault(g => g.CPUId == cpuId);
 
-            if (cpu != null)
-            {
-                cart.AddItem(cpu, 1, cpu.Name, cpu.Price);
-            }
-            return RedirectToAction("Index", new { returnUrl });
-        }
-
-        public RedirectToRouteResult RemoveFromCart(Cart cart, string returnUrl) // Cart cart   int cpuId,
+        public RedirectToRouteResult RemoveFromCart(Cart cart, string returnUrl)
         {
             cart.RemoveLine();
             return RedirectToAction("Index", new { returnUrl });
@@ -57,12 +56,22 @@ namespace ComputerStore.WebUI.Controllers
             });
         }
 
-        ///////////////////////////////МАТЕРИНСКИЕ ПЛАТЫ///////////////////////////////////////
+        public RedirectToRouteResult AddToCart(Cart cart, int Id, string returnUrl)
+        {
+            CPU cpu = repository.CPUs
+                .FirstOrDefault(g => g.Id == Id);
 
-        public RedirectToRouteResult AddToCartMB(Cart cart, int mbId, string returnUrl)
+            if (cpu != null)
+            {
+                cart.AddItem(cpu, 1, cpu.Name, cpu.Price);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public RedirectToRouteResult AddToCartMB(Cart cart, int Id, string returnUrl)
         {
             MB mb = MBRepository.MBs
-              .FirstOrDefault(g => g.MBId == mbId);
+              .FirstOrDefault(g => g.Id == Id);
 
             if (mb != null)
             {
@@ -70,21 +79,6 @@ namespace ComputerStore.WebUI.Controllers
             }
             return RedirectToAction("Index", new { returnUrl });
         }
-
-        public RedirectToRouteResult RemoveFromCartMB(Cart cart, int mbId, string returnUrl)
-        {
-            MB mb = MBRepository.MBs // поставил MBRepository
-                .FirstOrDefault(g => g.MBId == mbId);
-
-            if (mb != null)
-            {
-                //GetCart().RemoveLineMB(mb);
-                cart.RemoveLineMB(mb);
-            }
-            return RedirectToAction("Index", new { returnUrl });
-        }
-
-        ///////////////////////////////ВИДЕОКАРТЫ/////////////////////////////////////
 
         public RedirectToRouteResult AddToCartGPU(Cart cart, int Id, string returnUrl)
         {
@@ -98,9 +92,65 @@ namespace ComputerStore.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        public RedirectToRouteResult AddToCartRAM(Cart cart, int Id, string returnUrl)
+        {
+            RAM ram = RAMRepository.RAMs
+              .FirstOrDefault(g => g.Id == Id);
 
-        /// /////////////////////////////////////////////////////////////////////////////////
+            if (ram != null)
+            {
+                cart.AddItemRAM(ram, 1, ram.Name, ram.Price);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
 
+        public RedirectToRouteResult AddToCartCase(Cart cart, int Id, string returnUrl)
+        {
+            Case Case = CaseRepository.Cases
+              .FirstOrDefault(g => g.Id == Id);
+
+            if (Case != null)
+            {
+                cart.AddItemCase(Case, 1, Case.Name, Case.Price);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public RedirectToRouteResult AddToCartPower(Cart cart, int Id, string returnUrl)
+        {
+            Power power = PowerRepository.Powers
+              .FirstOrDefault(g => g.Id == Id);
+
+            if (power != null)
+            {
+                cart.AddItemPower(power, 1, power.Name, power.Price);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public RedirectToRouteResult AddToCartFAN(Cart cart, int Id, string returnUrl)
+        {
+            FAN fan = FANRepository.FANs
+              .FirstOrDefault(g => g.Id == Id);
+
+            if (fan != null)
+            {
+                cart.AddItemFAN(fan, 1, fan.Name, fan.Price);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
+
+        public RedirectToRouteResult AddToCartStorageDevice(Cart cart, int Id, string returnUrl)
+        {
+            StorageDevice StorageDevice = StorageDeviceRepository.StorageDevices
+              .FirstOrDefault(g => g.Id == Id);
+
+            if (StorageDevice != null)
+            {
+                cart.AddItemStorageDevice(StorageDevice, 1, StorageDevice.Name, StorageDevice.Price);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
 
         public Cart GetCart()
         {
@@ -137,9 +187,7 @@ namespace ComputerStore.WebUI.Controllers
             {
                 return View(shippingDetails);
             }
-
         }
-
 
         public ViewResult SendEmailCustom(Cart cart, ShippingDetails shippingDetails)
         {

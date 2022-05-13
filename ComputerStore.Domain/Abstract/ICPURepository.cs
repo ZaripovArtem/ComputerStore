@@ -7,6 +7,6 @@ namespace ComputerStore.Domain.Abstract
     {
         IEnumerable<CPU> CPUs { get; }
         void SaveChanges(CPU cpu);
-        CPU DeleteProduct(int CPUId);
+        CPU DeleteProduct(int Id);
     }
 }

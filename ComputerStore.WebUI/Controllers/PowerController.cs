@@ -20,7 +20,7 @@ namespace ComputerStore.WebUI.Controllers
             repository = rep;
         }
 
-        public ViewResult List(int page = 1, SortState sortState = SortState.NameAsc)
+        public ViewResult List(int page = 1, SortState sortState = SortState.NameAsc, string name = "", string brand = "")
         {
             IEnumerable<Power> Powers = repository.Powers;
             int pageSize = 4; // количество товара на 1 странице
@@ -43,6 +43,34 @@ namespace ComputerStore.WebUI.Controllers
                     break;
             }
 
+            if (!String.IsNullOrEmpty(brand))
+            {
+                Powers = Powers.Where(p => p.Brand.Contains(brand));
+            }
+            if (!String.IsNullOrEmpty(name))
+            {
+                Powers = Powers.Where(p => p.Name.Contains(name));
+            }
+
+            var Brand_Order = new List<string>();
+            Brand_Order.Add("");
+            int check = 0;
+            foreach (var product in Powers)
+            {
+                foreach (var br_list in Brand_Order)
+                {
+                    if (br_list == product.Brand)
+                    {
+                        check++;
+                    }
+                }
+                if (check == 0)
+                {
+                    Brand_Order.Add(product.Brand);
+                }
+                check = 0;
+            }
+
             PowersListViewModel model = new PowersListViewModel
             {
                 Powers = Powers,
@@ -51,7 +79,9 @@ namespace ComputerStore.WebUI.Controllers
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
                     TotalItems = repository.Powers.Count()
-                }
+                },
+                Name = name,
+                Brand = new SelectList(Brand_Order)
             };
 
             return View(model);

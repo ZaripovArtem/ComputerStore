@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ComputerStore.Domain.Abstract;
 using ComputerStore.Domain.Entities;
+using ComputerStore.WebUI.Models;
 
 namespace ComputerStore.WebUI.Controllers
 {
@@ -22,22 +23,33 @@ namespace ComputerStore.WebUI.Controllers
             GPURepository = GPUrep;
         }
         // GET: Admin
-        public ActionResult CPU()
+        public ActionResult CPU(string name)
         {
-            return View(CPURepository.CPUs);
+            // return View(CPURepository.CPUs);
+            IEnumerable<CPU> CPUs = CPURepository.CPUs;
+            if (!String.IsNullOrEmpty(name))
+            {
+                CPUs = CPUs.Where(p => p.Name.Contains(name));
+            }
+            EditCPUsViewModel model = new EditCPUsViewModel
+            {
+                CPUs = CPUs,
+                Name = name
+            };
+            return View(model);
         }
 
-        public ViewResult EditCPU(int cpuid)
+        public ViewResult EditCPU(int id)
         {
             CPU cpu = CPURepository.CPUs
-                .FirstOrDefault(c => c.CPUId == cpuid);
+                .FirstOrDefault(c => c.Id == id);
             return View(cpu);
         }
 
         [HttpPost]
-        public ActionResult EditCPU(CPU cpu, HttpPostedFileBase image = null)
+        public ActionResult EditCPU(CPU cpu, HttpPostedFileBase image)
         {
-
+            // изменил: HttpPostedFileBase image = null
             if (ModelState.IsValid)
             {
 
@@ -59,9 +71,9 @@ namespace ComputerStore.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteProduct(int CPUId)
+        public ActionResult DeleteProduct(int Id)
         {
-            CPU deletedProduct = CPURepository.DeleteProduct(CPUId);
+            CPU deletedProduct = CPURepository.DeleteProduct(Id);
             if (deletedProduct != null)
             {
                 TempData["message"] = string.Format("Процессор \"{0}\" был удален",
@@ -124,6 +136,11 @@ namespace ComputerStore.WebUI.Controllers
         public ViewResult CreateGPU()
         {
             return View("EditGPU", new GPU());
+        }
+
+        public ActionResult Index()
+        {
+            return View();
         }
     }
 }
