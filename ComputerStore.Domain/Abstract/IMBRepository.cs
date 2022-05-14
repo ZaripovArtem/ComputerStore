@@ -10,5 +10,7 @@ namespace ComputerStore.Domain.Abstract
     public interface IMBRepository
     {
         IEnumerable<MB> MBs { get; }
+        void SaveChanges(MB mb);
+        MB DeleteProduct(int Id);
     }
 }

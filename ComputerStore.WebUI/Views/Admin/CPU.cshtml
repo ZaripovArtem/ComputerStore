@@ -1,7 +1,7 @@
 ﻿@using ComputerStore.WebUI.Models
 @model EditCPUsViewModel
 @{
-    ViewBag.Title = "CPU";
+    ViewBag.Title = "Процессоры";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -39,7 +39,7 @@
                 {
                     <tr>
                         <td class="text-right">@item.Id</td>
-                        <td>@Html.ActionLink(item.Name, "EditCPU", new { item.Id })</td>
+                        <td>@Html.ActionLink(item.Brand +" "+ item.Name, "EditCPU", new { item.Id })</td>
                         <td class="text-right">@item.Price.ToString("# ₽")</td>
                         <td class="text-center">
                             @using (Html.BeginForm("DeleteProduct", "Admin"))

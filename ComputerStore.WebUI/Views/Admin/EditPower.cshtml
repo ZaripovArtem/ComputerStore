@@ -1,4 +1,4 @@
-﻿@model ComputerStore.Domain.Entities.GPU
+﻿@model ComputerStore.Domain.Entities.Power
 
 @{
     ViewBag.Title = "Админ панель: редактирование товара";
@@ -6,15 +6,15 @@
 }
 
 <div class="panel">
+   
 
-
-    @using (Html.BeginForm("EditGPU", "Admin",
+    @using (Html.BeginForm("EditCPU", "Admin",
         FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="main">
             <div class="helper">
                 <div class="panel-heading">
-                    <h3>Редактирование видеокарты @Model.Name</h3>
+                    <h3>Редактирование блока питания @Model.Name</h3>
                 </div>
                 <div class="panel-body">
                     @Html.HiddenFor(m => m.Id)
@@ -57,7 +57,7 @@
                         {
                             <div class="photo">
                                 <img class="img-thumbnail" width="150" height="150"
-                                     src="@Url.Action("GetImage", "GPU",
+                                     src="@Url.Action("GetImage", "Power",
                                     new { Model.Id })" />
                             </div>
                         }
@@ -66,7 +66,7 @@
                 </div>
                 <div class="panel-footer">
                     <input type="submit" value="Сохранить" class="btn btn-primary" />
-                    @Html.ActionLink("Отменить изменения", "CPU", null, new
+                    @Html.ActionLink("Отменить изменения", "Power", null, new
                     {
                         @class = "btn btn-default"
                     })
@@ -77,52 +77,48 @@
 </div>
 
 <style>
-    .form-group {
+    .form-group{
         width: 400px;
         padding-left: 10px;
         padding-top: 5px;
+        
     }
-
-    .button-pic {
+    .button-pic{
         color: black;
         padding-left: 2px;
     }
-
-        .button-pic:focus {
-            border-bottom: 1px black solid;
-        }
-
+    .button-pic:focus{
+        border-bottom: 1px black solid;
+    }
     .photo {
         position: absolute;
+        
     }
-
-        .photo h2 {
-            left: 0;
-            position: absolute;
-            top: 105px;
-            width: 100%;
-            left: 5px;
-        }
-
-            .photo h2 span {
-                background: #222;
-                border-radius: 2px;
-                color: #fff;
-                font: 21px arial;
-                line-height: 29px;
-                padding: 3px 5px;
-            }
-
+    .photo h2 {
+        left: 0;
+        position: absolute;
+        top: 105px;
+        width: 100%;
+        left: 5px;
+    }
+    .photo h2 span{
+        background: #222;
+        border-radius: 2px;
+        color: #fff;
+        font: 21px arial;
+        line-height: 29px;
+        padding: 3px 5px;
+    }
     .panel-footer {
         margin-top: 155px;
         margin-left: 10px;
     }
-
     .main {
         width: 100%;
         height: 100%;
-    }
 
+
+    }
     .helper {
         -webkit-box-shadow: 0px 5px 26px 1px rgba(34, 60, 80, 0.29);
         -moz-box-shadow: 0px 5px 26px 1px rgba(34, 60, 80, 0.29);
@@ -131,7 +127,7 @@
         left: 30%;
         top: 10%;
         border-radius: 12px;
-        height: 1110px;
+        height: 1060px;
         width: 1100px;
         padding-top: 50px;
         padding-left: 250px;

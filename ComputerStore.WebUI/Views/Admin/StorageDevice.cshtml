@@ -1,7 +1,7 @@
 ﻿@using ComputerStore.WebUI.Models
-@model EditGPUsViewModel
+@model EditStorageDevicesViewModel
 @{
-    ViewBag.Title = "Видеокарты";
+    ViewBag.Title = "Накопители";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -10,14 +10,14 @@
 </head>
 
 <div class="name">
-    <h3>Список видеокарт</h3>
+    <h3>Список накопителей</h3>
 </div>
 
 
 
 <form method="get">
     <div class="Search">
-        @Html.ActionLink("Добавить товар", "CreateGPU", null,
+        @Html.ActionLink("Добавить товар", "CreateStorageDevice", null,
                new { @class = "btn btn-primary" })
         <input name="name" class="form-control" placeholder="Название" />
         <input type="submit" value="Поиск" class="btn btn-primary" />
@@ -35,14 +35,14 @@
                 <th class="text-right">Цена</th>
                 <th class="text-center"></th>
             </tr>
-            @foreach (var item in @Model.GPUs)
+            @foreach (var item in @Model.StorageDevices)
             {
                 <tr>
                     <td class="text-right">@item.Id</td>
-                    <td>@Html.ActionLink(item.Brand +" "+item.Name, "EditGPU", new { item.Id })</td>
+                    <td>@Html.ActionLink(item.Brand +" "+item.Name, "EditStorageDevice", new { item.Id })</td>
                     <td class="text-right">@item.Price.ToString("# ₽")</td>
                     <td class="text-center">
-                        @using (Html.BeginForm("DeleteGPU", "Admin"))
+                        @using (Html.BeginForm("DeleteStorageDevice", "Admin"))
                         {
                             @Html.Hidden("Id", item.Id)
                             <input type="submit"

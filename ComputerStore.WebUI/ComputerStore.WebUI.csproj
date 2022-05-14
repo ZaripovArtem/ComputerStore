@@ -251,6 +251,18 @@
     <Content Include="Views\RAM\List.cshtml" />
     <Content Include="Views\StorageDevice\List.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\RAM.cshtml" />
+    <Content Include="Views\Admin\MB.cshtml" />
+    <Content Include="Views\Admin\Case.cshtml" />
+    <Content Include="Views\Admin\FAN.cshtml" />
+    <Content Include="Views\Admin\Power.cshtml" />
+    <Content Include="Views\Admin\StorageDevice.cshtml" />
+    <Content Include="Views\Admin\EditCase.cshtml" />
+    <Content Include="Views\Admin\EditMB.cshtml" />
+    <Content Include="Views\Admin\EditFAN.cshtml" />
+    <Content Include="Views\Admin\EditPower.cshtml" />
+    <Content Include="Views\Admin\EditRAM.cshtml" />
+    <Content Include="Views\Admin\EditStorageDevice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
