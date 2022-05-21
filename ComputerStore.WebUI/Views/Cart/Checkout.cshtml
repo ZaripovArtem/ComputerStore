@@ -195,6 +195,9 @@
             @*<input type="text" name="lastName" placeholder="Фамилия" class="lname-text-field">*@
             @Html.TextBoxFor(x => x.Surname, new { @class = "lname-text-field", @placeholder = "Фамилия" })
         </div>
+        @Html.TextBoxFor(x => x.Partonomic, new { @class = "lname-text-field", @placeholder = "Отчество" })
+        <br />
+        @Html.TextBoxFor(x => x.Phone, new { @class = "fname-text-field", @placeholder = "Номер телефона"})
 
         <h3>Адресс Доставки</h3>
 
@@ -309,6 +312,9 @@
             height: 40px;
             border-radius: 5px;
             margin-top: 5px;
+        }
+        .pull-center {
+            margin-bottom: 500px;
         }
     </style>
 

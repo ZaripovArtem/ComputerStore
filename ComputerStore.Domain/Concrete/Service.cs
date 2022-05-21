@@ -42,23 +42,11 @@ namespace ComputerStore.Domain.Concrete
                     body.AppendLine("), ");
                 }
                 body.AppendFormat("Общая стоимость: {0:c}", cart.ComputeTotalValue());
-                // body.AppendLine("Общая стоимость: " + cart.ComputeTotalValue());
-                // body.AppendFormat("Общая стоимость: {0:c}", cart.ComputeTotalValue());
-                //.AppendLine("")
-                //.AppendLine("---")
-                //.AppendLine("Доставка:")
-                //.AppendLine("Имя: " + shippingDetails.Name)
-                //.AppendLine("Фамилия: " + shippingDetails.Surname)
-                //.AppendLine("Страна: " + shippingDetails.Country)
-                //.AppendLine("Город: " + shippingDetails.City)
-                //.AppendLine("Улица: " + shippingDetails.Street)
-                //.AppendLine("Дом: " + shippingDetails.House)
-                //.AppendLine("Квартира: " + shippingDetails.Flat ?? "не указано")
-                //.AppendLine("Корпус: " + shippingDetails.HouseBuilding ?? "не указано")
-                //.AppendLine("Этаж: " + shippingDetails.Floor ?? "не указано");
 
                 string Name = "Имя: " + shippingDetails.Name;
                 string Surname = "Фамилия: " + shippingDetails.Surname;
+                string Patronomic = "Отчество: " + shippingDetails.Partonomic;
+                string Phone = "Номер телефона: " + shippingDetails.Phone;
                 string Country = "Страна: " + shippingDetails.Country;
                 string City = "Город: " + shippingDetails.City;
                 string Street = "Улица: " + shippingDetails.Street;
@@ -76,6 +64,8 @@ namespace ComputerStore.Domain.Concrete
                    body  + "<hr>"
                    + "<br>" + Name
                    + "<br>" + Surname
+                   + "<br>" + Patronomic
+                   + "<br>" + Phone
                    + "<br>" + Country
                    + "<br>" + City
                    + "<br>" + Street

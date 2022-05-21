@@ -23,7 +23,7 @@ namespace ComputerStore.WebUI.Controllers
         public ViewResult List(int page = 1, SortState sortState = SortState.NameAsc, string name = "", string brand = "")
         {
             IEnumerable<GPU> GPUs = repository.GPUs;
-            int pageSize = 4; // количество товара на 1 странице
+            int pageSize = 6; // количество товара на 1 странице
             // сортировка
             switch (sortState)
             {

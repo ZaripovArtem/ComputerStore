@@ -14,9 +14,16 @@ namespace ComputerStore.Domain.Entities
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Укажите Вашу фамилию")]
-        [Display(Name = "Имя")]
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
-        // Добавить номер телефона
+
+        [Required(ErrorMessage = "Укажите Ваше отчество")]
+        [Display(Name = "Отчество")]
+        public string Partonomic { get; set; }
+
+        [Required(ErrorMessage = "Укажите Ваш номер телефона")]
+        [Display(Name = "Номер телефона")]
+        public string Phone { get; set; }
 
         [Required(ErrorMessage = "Укажите страну")]
         [Display(Name = "Страна")]
@@ -36,9 +43,9 @@ namespace ComputerStore.Domain.Entities
         [Display(Name = "Квартира")]
         public string Flat { get; set; }
         [Display(Name = "Корпус")]
-        public string HouseBuilding { get; set; }  // корпус
+        public string HouseBuilding { get; set; } 
         [Display(Name = "Этаж")]
-        public string Floor { get; set; } // этаж
+        public string Floor { get; set; }
 
 
 

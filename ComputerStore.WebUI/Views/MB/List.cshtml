@@ -35,13 +35,14 @@
                             <div class="pricing-card__top">
                                 <div class="pricing-card__title">
                                     <h4>@p.Brand @p.Name</h4>
+                                 
                                 </div>
                                 <div class="pricing-card__price">
                                     <h4> @p.Price.ToString("# ₽")<span></span></h4>
                                 </div>
                                 @if (p.ImageData == null)
                                 {
-                                    <img class='picture' src="https://cdn1.ozone.ru/s3/multimedia-a/c1200/6052812118.jpg" height="130" width="130">
+                                    <img class='picture' src="https://imgur.com/bChzyZg.png" height="130" width="130">
                                 }
                                 else
                                 {
@@ -139,6 +140,10 @@
 
                                     .btn {
                                         height: 32px;
+                                    }
+                                    
+                                    .picture {
+                                        margin-top: 32px;
                                     }
                                 </style>
                             </div>

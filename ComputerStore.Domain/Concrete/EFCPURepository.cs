@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ComputerStore.Domain.Entities;
 using ComputerStore.Domain.Abstract;
+using System.Linq;
 
 namespace ComputerStore.Domain.Concrete
 {
