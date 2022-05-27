@@ -83,6 +83,19 @@ namespace ComputerStore.WebUI.Controllers
 
             return View(model);
         }
+        public FileContentResult GetImage(int id)
+        {
+            MB mb = repository.MBs
+                .FirstOrDefault(c => c.Id == id);
+            if (mb != null)
+            {
+                return File(mb.ImageData, mb.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
     
 }

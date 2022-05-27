@@ -146,5 +146,7 @@
 </div>
 
 <div>
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+    <ul class="pagination pagination-lg justify-content-center">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+    </ul>
 </div>

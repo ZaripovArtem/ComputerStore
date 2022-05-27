@@ -51,11 +51,11 @@ namespace ComputerStore.UnitTests
             Mock<ICPURepository> mock = new Mock<ICPURepository>();
             mock.Setup(m => m.CPUs).Returns(new List<CPU>
             {
-                new CPU { CPUId = 1, Name = "CPU1"},
-                new CPU { CPUId = 2, Name = "CPU2"},
-                new CPU { CPUId = 3, Name = "CPU3"},
-                new CPU { CPUId = 4, Name = "CPU4"},
-                new CPU { CPUId = 5, Name = "CPU5"}
+                new CPU { Id = 1, Name = "CPU1"},
+                new CPU { Id = 2, Name = "CPU2"},
+                new CPU { Id = 3, Name = "CPU3"},
+                new CPU { Id = 4, Name = "CPU4"},
+                new CPU { Id = 5, Name = "CPU5"}
             });
             CPUController controller = new CPUController(mock.Object);
             controller.pageSize = 4;
@@ -76,11 +76,11 @@ namespace ComputerStore.UnitTests
             Mock<ICPURepository> mock = new Mock<ICPURepository>();
             mock.Setup(m => m.CPUs).Returns(new List<CPU>
             {
-                new CPU { CPUId = 1, Name = "1", Brand="B1"},
-                new CPU { CPUId = 2, Name = "2", Brand="B2"},
-                new CPU { CPUId = 3, Name = "3", Brand="B1"},
-                new CPU { CPUId = 4, Name = "4", Brand="B3"},
-                new CPU { CPUId = 5, Name = "5", Brand="B4"}
+                new CPU { Id = 1, Name = "1", Brand="B1"},
+                new CPU { Id = 2, Name = "2", Brand="B2"},
+                new CPU { Id = 3, Name = "3", Brand="B1"},
+                new CPU { Id = 4, Name = "4", Brand="B3"},
+                new CPU { Id = 5, Name = "5", Brand="B4"}
             });
             CPUController controller = new CPUController(mock.Object);
             controller.pageSize = 3;
@@ -99,7 +99,7 @@ namespace ComputerStore.UnitTests
         public void Can_Add_In_Order()
         {
             // Организация - создание нескольких тестовых игр
-            CPU cpu1 = new CPU { CPUId = 1, Name = "Процессор 1", Price = 123 };
+            CPU cpu1 = new CPU { Id = 1, Name = "Процессор 1", Price = 123 };
             GPU gpu1 = new GPU { Id = 1, Name = "Видеокарта 1", Price = 333 };
 
             Cart cart = new Cart();
@@ -114,7 +114,7 @@ namespace ComputerStore.UnitTests
         [TestMethod]
         public void Calculate_Products()
         {
-            CPU cpu1 = new CPU { CPUId = 1, Name = "Процессор 1", Price = 123 };
+            CPU cpu1 = new CPU { Id = 1, Name = "Процессор 1", Price = 123 };
             GPU gpu1 = new GPU { Id = 1, Name = "Видеокарта 1", Price = 333 };
 
             Cart cart = new Cart();

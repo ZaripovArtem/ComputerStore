@@ -77,6 +77,16 @@
                                 <div class="characteristic">
                                     Характеристики:
                                     <br />
+                                    Тип корпуса: @p.TypeOfCase
+                                    <br />
+                                    Длина: @p.Length
+                                    <br />
+                                    Ширина: @p.Width
+                                    <br />
+                                    Высота: @p.Height
+                                    <br />
+                                    Разъемы: @p.Connector
+                                    <br />
 
                                 </div>
                                 <br />
@@ -134,5 +144,7 @@
 </div>
 
 <div>
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+    <ul class="pagination pagination-lg justify-content-center">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+    </ul>
 </div>
